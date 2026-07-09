@@ -465,16 +465,32 @@ body {
     height: 100%;
     opacity: 0;
     pointer-events: none;
-    transform: translateY(16px);
     transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     overflow-y: auto;
     overflow-x: hidden;
 }
 
+/* Quadrant-Specific Transitions matching their home page corner slots */
+#works-view {
+    transform: translate(-32px, -32px) scale(0.97);
+}
+#about-view {
+    transform: translate(32px, -32px) scale(0.97);
+}
+#experience-view {
+    transform: translate(-32px, 32px) scale(0.97);
+}
+#contact-view {
+    transform: translate(32px, 32px) scale(0.97);
+}
+#home-view {
+    transform: scale(0.97);
+}
+
 .app-view.active-view {
     opacity: 1;
     pointer-events: auto;
-    transform: translateY(0);
+    transform: translate(0, 0) scale(1) !important;
     z-index: 1;
 }
 

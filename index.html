@@ -25,6 +25,8 @@
 
     <!-- Background Music -->
     <audio id="bg-music" src="./verclub_music-relaxing-music-550889.mp3" loop></audio>
+    <!-- Click Sound Effect -->
+    <audio id="click-sound" src="./mixkit-mouse-click-close-1113.wav" preload="auto"></audio>
 
     <!-- 2. Custom Magnetic Pointer Cursor (Kalinsky style blend mode difference dot) -->
     <div id="custom-cursor" class="custom-cursor" aria-hidden="true"></div>
@@ -933,6 +935,26 @@
                     });
                 });
             }
+
+            // Click sound player
+            const playClickSound = () => {
+                const clickSound = document.getElementById("click-sound");
+                if (clickSound) {
+                    clickSound.currentTime = 0;
+                    clickSound.volume = 0.55;
+                    clickSound.play().catch(err => {
+                        console.log("Audio playback waiting for gesture.");
+                    });
+                }
+            };
+
+            // Bind click sound to all user-facing option clicks and navigations
+            window.addEventListener("click", (e) => {
+                const trigger = e.target.closest("a, button, .project-marquee-card, .work-cover-link, .about-row, .social-item");
+                if (trigger) {
+                    playClickSound();
+                }
+            });
 
             window.addEventListener("hashchange", () => {
                 handleRoute(window.location.hash);
