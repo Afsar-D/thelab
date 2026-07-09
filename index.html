@@ -5,6 +5,24 @@
     <link rel="icon" type="image/jpeg" href="./icon.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Afsar D — Portfolio</title>
+    <meta name="description" content="Afsar D — Professional Developer Portfolio. Explore software engineering projects, experience, technical skills, and certifications. Vibe Coder, Python and React Dev." />
+    <meta name="keywords" content="Afsar D, Afsar-D, portfolio, python developer, react developer, vibe coder, software engineer, web developer, thelab" />
+    <meta name="author" content="Afsar D" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://workspacelab.vercel.app/" />
+    <meta property="og:title" content="Afsar D — Portfolio" />
+    <meta property="og:description" content="Professional developer portfolio showcasing projects, experience, and custom transitions. Vibe Coder, Python and React Dev." />
+    <meta property="og:image" content="./og-image.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://workspacelab.vercel.app/" />
+    <meta property="twitter:title" content="Afsar D — Portfolio" />
+    <meta property="twitter:description" content="Professional developer portfolio showcasing projects, experience, and custom transitions. Vibe Coder, Python and React Dev." />
+    <meta property="twitter:image" content="./og-image.jpg" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -150,7 +168,7 @@
                             </div>
                         </div>
                         <div class="work-cover-col">
-                            <a href="https://github.com/Afsar-D/thelab" target="_blank" rel="noopener noreferrer" class="work-cover-link hover-grow-trigger">
+                            <a href="https://workspacelab.vercel.app/" target="_blank" rel="noopener noreferrer" class="work-cover-link hover-grow-trigger">
                                 <div class="work-cover-card hover-glow-card image-cover" style="background-image: url('./PortfolioCover.png');">
                                     <div class="cover-overlay-indicator">
                                         <span>visit site</span>
@@ -243,7 +261,7 @@
                             </div>
                         </div>
                         <div class="work-cover-col">
-                            <a href="https://github.com/Afsar-D/thelab" target="_blank" rel="noopener noreferrer" class="work-cover-link hover-grow-trigger">
+                            <a href="https://workspacelab.vercel.app/" target="_blank" rel="noopener noreferrer" class="work-cover-link hover-grow-trigger">
                                 <div class="work-cover-card hover-glow-card image-cover" style="background-image: url('./PortfolioCover.png');">
                                     <div class="cover-overlay-indicator">
                                         <span>visit site</span>
@@ -895,6 +913,11 @@
                 if (viewId === "home") {
                     floatingMenu.classList.remove("menu-visible");
                     menuLinks.home.classList.add("active-page");
+                    
+                    // Silently remove the hash when returning home to keep the URL bar clean
+                    if (window.location.hash !== "" && window.location.hash !== "#") {
+                        history.replaceState(null, document.title, window.location.pathname + window.location.search);
+                    }
                 } else {
                     floatingMenu.classList.add("menu-visible");
                     menuLinks[viewId].classList.add("active-page");
