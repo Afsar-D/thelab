@@ -487,19 +487,21 @@ body {
     transform: scale(0.97);
 }
 
-/* Horizontal slide transitions when switching directly between subpages */
-.app-view.slide-from-left {
-    transform: translate(-48px, 0) scale(0.98) !important;
-}
-.app-view.slide-from-right {
-    transform: translate(48px, 0) scale(0.98) !important;
-}
-
 .app-view.active-view {
     opacity: 1;
     pointer-events: auto;
     transform: translate(0, 0) scale(1) !important;
     z-index: 1;
+}
+
+/* Horizontal slide transitions when switching directly between subpages */
+.app-view.slide-entry-left {
+    transform: translate(-48px, 0) scale(0.98) !important;
+    transition: none !important;
+}
+.app-view.slide-entry-right {
+    transform: translate(48px, 0) scale(0.98) !important;
+    transition: none !important;
 }
 
 #works-view {
@@ -1242,13 +1244,13 @@ body.menu-lock {
 .scramble-title-line {
     margin-top: 24px;
     font-family: "Safiro Medium", sans-serif;
-    font-size: 15px;
-    letter-spacing: -0.01em;
+    font-size: clamp(16px, 2.2vw, 28px);
+    letter-spacing: -0.02em;
     color: var(--text-primary);
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 4px;
+    gap: 8px;
 }
 
 .static-name {
@@ -1258,7 +1260,7 @@ body.menu-lock {
 
 .dynamic-text {
     color: var(--accent);
-    font-weight: 500;
+    font-weight: 600;
     font-family: monospace;
     letter-spacing: 0.04em;
 }
@@ -1311,6 +1313,10 @@ body.menu-lock {
     .work-snap-tags {
         justify-content: center;
     }
+
+    .work-cover-card {
+        height: 320px !important;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1342,8 +1348,18 @@ body.menu-lock {
 }
 
 @media (max-width: 480px) {
+    .quadrant-layout {
+        padding: 16px !important;
+    }
+    
+    .top-left { top: 24px !important; left: 16px !important; }
+    .top-right { top: 24px !important; right: 16px !important; }
+    .bottom-left { bottom: 68px !important; left: 16px !important; }
+    .bottom-right { bottom: 68px !important; right: 16px !important; }
+    .bottom-center-brand { bottom: 20px !important; }
+
     .nav-trigger {
-        font-size: 1.1rem;
+        font-size: 1.05rem !important;
     }
     
     .logo-initials {
@@ -1358,6 +1374,10 @@ body.menu-lock {
     
     .card-title {
         font-size: 15px;
+    }
+
+    .work-cover-card {
+        height: 240px !important;
     }
     
     /* Navigation bar icon-only mobile layout */

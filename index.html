@@ -907,7 +907,7 @@
 
                 // Deactivate all views and menu links
                 Object.keys(views).forEach(key => {
-                    views[key].classList.remove("active-view", "slide-from-left", "slide-from-right");
+                    views[key].classList.remove("active-view", "slide-entry-left", "slide-entry-right");
                 });
                 Object.keys(menuLinks).forEach(key => {
                     menuLinks[key].classList.remove("active-page");
@@ -917,17 +917,23 @@
                 if (prevViewId !== "home" && viewId !== "home" && prevViewId !== viewId) {
                     const prevIndex = viewIndices[prevViewId];
                     const nextIndex = viewIndices[viewId];
-                    if (nextIndex > prevIndex) {
-                        views[viewId].classList.add("slide-from-right");
-                    } else {
-                        views[viewId].classList.add("slide-from-left");
-                    }
-                    // Force a browser paint reflow to commit transition state
+                    const directionClass = nextIndex > prevIndex ? "slide-entry-right" : "slide-entry-left";
+                    
+                    // Instantly place element at offset position with transitions disabled
+                    views[viewId].classList.add(directionClass);
+                    views[viewId].classList.add("active-view");
+                    
+                    // Force a browser reflow layout check
                     views[viewId].offsetHeight;
+                    
+                    // Remove offset class in the next frame to trigger horizontal transition slide
+                    setTimeout(() => {
+                        views[viewId].classList.remove(directionClass);
+                    }, 25);
+                } else {
+                    // Default quadrant transitions
+                    views[viewId].classList.add("active-view");
                 }
-
-                // Activate selected view
-                views[viewId].classList.add("active-view");
                 
                 // Show/hide persistent floating menu based on view
                 if (viewId === "home") {
