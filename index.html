@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/jpeg" href="./icon.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Afsar D — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./index.css" />
+</head>
+<body class="spa-body">
+
+    <!-- 1. Modern Percentage Progress Loader -->
+    <div id="loader-overlay" class="loader-container">
+        <div class="loader-content">
+            <span class="loader-brand">afsar d</span>
+            <span class="loader-percentage" id="loader-percentage">00</span>
+            <div class="loader-progress-bar">
+                <div class="loader-progress-line" id="loader-progress-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bg-music" src="./verclub_music-relaxing-music-550889.mp3" loop></audio>
+
+    <!-- 2. Custom Magnetic Pointer Cursor (Kalinsky style blend mode difference dot) -->
+    <div id="custom-cursor" class="custom-cursor" aria-hidden="true"></div>
+
+    <!-- 3. SPA Views Container -->
+    <div class="spa-views-wrapper">
+
+        <!-- VIEW A: Home (Landing Page) -->
+        <section id="home-view" class="app-view active-view">
+            <!-- Fullscreen Quadrants -->
+            <div class="quadrant-layout">
+                
+                <div class="quadrant top-left">
+                    <a href="#works" class="nav-trigger hover-grow-trigger">
+                        <span class="nav-label-main">works</span>
+                        <span class="nav-label-count">[3]</span>
+                    </a>
+                </div>
+
+                <div class="quadrant top-right">
+                    <a href="#about" class="nav-trigger hover-grow-trigger">
+                        <span class="nav-label-main">about</span>
+                    </a>
+                </div>
+
+                <div class="quadrant bottom-left">
+                    <a href="#experience" class="nav-trigger hover-grow-trigger">
+                        <span class="nav-label-main">experience</span>
+                    </a>
+                </div>
+
+                <div class="quadrant bottom-right">
+                    <a href="#contact" class="nav-trigger hover-grow-trigger">
+                        <span class="nav-label-main">contact</span>
+                    </a>
+                </div>
+
+                <!-- Center Screen content -->
+                <div class="center-content">
+                    <div class="project-marquee-container">
+                        <div class="marquee-track" id="marquee-track">
+                            <!-- Populated dynamically by JS -->
+                        </div>
+                    </div>
+
+                    <div class="center-quote-container">
+                        <div class="scramble-title-line">
+                            <span class="static-name">Afsar D — </span>
+                            <span class="dynamic-text" id="dynamic-scramble">"Python Dev"</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brand & Controls (Static at bottom center of Home) -->
+                <div class="bottom-center-brand">
+                    <span class="logo-initials">a d</span>
+                    <button type="button" class="music-toggle-btn hover-grow-trigger" id="home-music-toggle" aria-label="Toggle music">
+                        <span class="audio-bar bar-1"></span>
+                        <span class="audio-bar bar-2"></span>
+                        <span class="audio-bar bar-3"></span>
+                    </button>
+                    <button type="button" class="theme-toggle-btn hover-grow-trigger" id="home-theme-toggle" aria-label="Toggle theme">
+                        <span class="theme-dot"></span>
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- VIEW B: Works (Vertical Scroll-Snap Slider) -->
+        <section id="works-view" class="app-view">
+            <div class="works-snap-container" id="snap-container">
+
+                <!-- DUMMY SECTION: Project 3 (For Infinite Loop) -->
+                <section class="works-snap-section dummy-loop-section">
+                    <div class="works-split-layout">
+                        <div class="work-info-col">
+                            <span class="work-snap-num">03</span>
+                            <h2 class="work-snap-title">expense tracker</h2>
+                            <p class="work-snap-desc">An expense tracking app for recording transactions, organizing spending, and reviewing money flow with a clean and simple interface.</p>
+                            <div class="work-snap-tags">
+                                <span class="tag">React</span>
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">CSS</span>
+                            </div>
+                            <div class="work-snap-actions">
+                                <a href="https://github.com/Afsar-D/expense-tracker" target="_blank" rel="noopener noreferrer" class="work-action-btn hover-grow-trigger">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                    <span>code</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="work-cover-col">
+                            <a href="https://afsar-d.github.io/expense-tracker" target="_blank" rel="noopener noreferrer" class="work-cover-link hover-grow-trigger">
+                                <div class="work-cover-card null-cover hover-glow-card">
+                                    <span class="null-cover-num">03</span>
+                                    <span class="null-cover-label">expense tracker</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Project 1 Section -->
+                <section class="works-snap-section">
+                    <div class="works-split-layout">
+                        <div class="work-info-col">
+                            <span class="work-snap-num">01</span>
+                            <h2 class="work-snap-title">portfolio website</h2>
+                            <p class="work-snap-desc">A responsive personal portfolio built with React and Vite, focused on smooth interactions, dynamic physics-based particles, and custom typography navigation.</p>
+                            <div class="work-snap-tags">
+                                <span class="tag">React</span>
+                                <span class="tag">Vite</span>
+                                <span class="tag">CSS</span>
+                            </div>
+                            <div class="work-snap-actions">
+                                <a href="https://github.com/Afsar-D/portfolio" target="_blank" rel="noopener noreferrer" class="work-action-btn hover-grow-trigger">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                    <span>code</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="work-cover-col">
+                            <a href="https://myportfolio.afsar.codes/" target="_blank" rel="noopener noreferrer" class="work-cover-link hover-grow-trigger">
+                                <div class="work-cover-card hover-glow-card image-cover" style="background-image: url('./PortfolioCover.png');">
+                                    <div class="cover-overlay-indicator">
+                                        <span>visit site</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Project 2 Section -->
+                <section class="works-snap-section">
+                    <div class="works-split-layout">
+                        <div class="work-info-col">
+                            <span class="work-snap-num">02</span>
+                            <h2 class="work-snap-title">liquids library</h2>
+                            <p class="work-snap-desc">A modern library-style web app deployed on Vercel with Supabase PostgreSQL for data storage, delivering responsive browsing and reliable backend support.</p>
+                            <div class="work-snap-tags">
+                                <span class="tag">React</span>
+                                <span class="tag">Vite</span>
+                                <span class="tag">Supabase</span>
+                                <span class="tag">PostgreSQL</span>
+                            </div>
+                            <div class="work-snap-actions">
+                                <a href="https://github.com/Afsar-D/drinks-stall" target="_blank" rel="noopener noreferrer" class="work-action-btn hover-grow-trigger">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                    <span>code</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="work-cover-col">
+                            <a href="https://liquids-library.vercel.app/" target="_blank" rel="noopener noreferrer" class="work-cover-link hover-grow-trigger">
+                                <div class="work-cover-card hover-glow-card image-cover" style="background-image: url('./LiquidCover.png');">
+                                    <div class="cover-overlay-indicator">
+                                        <span>visit site</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Project 3 Section -->
+                <section class="works-snap-section">
+                    <div class="works-split-layout">
+                        <div class="work-info-col">
+                            <span class="work-snap-num">03</span>
+                            <h2 class="work-snap-title">expense tracker</h2>
+                            <p class="work-snap-desc">An expense tracking app for recording transactions, organizing spending, and reviewing money flow with a clean and simple interface.</p>
+                            <div class="work-snap-tags">
+                                <span class="tag">React</span>
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">CSS</span>
+                            </div>
+                            <div class="work-snap-actions">
+                                <a href="https://github.com/Afsar-D/expense-tracker" target="_blank" rel="noopener noreferrer" class="work-action-btn hover-grow-trigger">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                    <span>code</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="work-cover-col">
+                            <a href="https://afsar-d.github.io/expense-tracker" target="_blank" rel="noopener noreferrer" class="work-cover-link hover-grow-trigger">
+                                <div class="work-cover-card null-cover hover-glow-card">
+                                    <span class="null-cover-num">03</span>
+                                    <span class="null-cover-label">expense tracker</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- DUMMY SECTION: Project 1 (For Infinite Loop) -->
+                <section class="works-snap-section dummy-loop-section">
+                    <div class="works-split-layout">
+                        <div class="work-info-col">
+                            <span class="work-snap-num">01</span>
+                            <h2 class="work-snap-title">portfolio website</h2>
+                            <p class="work-snap-desc">A responsive personal portfolio built with React and Vite, focused on smooth interactions, dynamic physics-based particles, and custom typography navigation.</p>
+                            <div class="work-snap-tags">
+                                <span class="tag">React</span>
+                                <span class="tag">Vite</span>
+                                <span class="tag">CSS</span>
+                            </div>
+                            <div class="work-snap-actions">
+                                <a href="https://github.com/Afsar-D/portfolio" target="_blank" rel="noopener noreferrer" class="work-action-btn hover-grow-trigger">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                    <span>code</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="work-cover-col">
+                            <a href="https://myportfolio.afsar.codes/" target="_blank" rel="noopener noreferrer" class="work-cover-link hover-grow-trigger">
+                                <div class="work-cover-card hover-glow-card image-cover" style="background-image: url('./PortfolioCover.png');">
+                                    <div class="cover-overlay-indicator">
+                                        <span>visit site</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </section>
+
+        <!-- VIEW C: About (Spacious single column lists) -->
+        <section id="about-view" class="app-view">
+            <div class="container subpage-container about-spacious-container">
+                
+                <header class="overlay-header reveal-on-scroll">
+                    <p class="overlay-eyebrow">biography & skills</p>
+                    <h1 class="overlay-title">about me</h1>
+                </header>
+
+                <!-- Profile -->
+                <section class="about-spacious-section reveal-on-scroll">
+                    <h3 class="about-section-eyebrow">01 / profile</h3>
+                    <div class="about-section-content">
+                        <p class="bio-paragraph">
+                            Hi, I'm Afsar. I build responsive React web applications and engineer Python workflows for data science. As a Data Science Intern at Unified Mentor, I focus on high-performance, data-driven solutions.
+                        </p>
+                        <div class="about-stats-row">
+                            <div class="bio-stat">
+                                <span class="bio-stat-value">3+</span>
+                                <span class="bio-stat-label">shipped projects</span>
+                            </div>
+                            <div class="bio-stat">
+                                <span class="bio-stat-value">6</span>
+                                <span class="bio-stat-label">core technologies</span>
+                            </div>
+                            <div class="bio-stat">
+                                <span class="bio-stat-value">3</span>
+                                <span class="bio-stat-label">certifications</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Stack -->
+                <section class="about-spacious-section reveal-on-scroll">
+                    <h3 class="about-section-eyebrow">02 / stack</h3>
+                    <div class="about-section-content">
+                        <h4 class="about-list-subtitle">technical skills</h4>
+                        <div class="about-rows-list">
+                            <div class="about-row hover-glow-card">
+                                <div class="about-row-left">
+                                    <img src="./c.png" alt="C" class="row-logo" />
+                                    <span class="row-title">C Programming</span>
+                                </div>
+                                <span class="row-desc">software & algorithms</span>
+                            </div>
+                            <div class="about-row hover-glow-card">
+                                <div class="about-row-left">
+                                    <img src="./py.png" alt="Python" class="row-logo" />
+                                    <span class="row-title">Python</span>
+                                </div>
+                                <span class="row-desc">data science & scripting</span>
+                            </div>
+                            <div class="about-row hover-glow-card">
+                                <div class="about-row-left">
+                                    <img src="./html.png" alt="HTML" class="row-logo" />
+                                    <span class="row-title">HTML5</span>
+                                </div>
+                                <span class="row-desc">structural markup</span>
+                            </div>
+                            <div class="about-row hover-glow-card">
+                                <div class="about-row-left">
+                                    <img src="./css.png" alt="CSS" class="row-logo" />
+                                    <span class="row-title">CSS3</span>
+                                </div>
+                                <span class="row-desc">styling design systems</span>
+                            </div>
+                            <div class="about-row hover-glow-card">
+                                <div class="about-row-left">
+                                    <img src="./js.png" alt="JavaScript" class="row-logo" />
+                                    <span class="row-title">JavaScript</span>
+                                </div>
+                                <span class="row-desc">frontend application logic</span>
+                            </div>
+                            <div class="about-row hover-glow-card">
+                                <div class="about-row-left">
+                                    <img src="./React.png" alt="React" class="row-logo" />
+                                    <span class="row-title">React</span>
+                                </div>
+                                <span class="row-desc">ui architecture</span>
+                            </div>
+                        </div>
+
+                        <h4 class="about-list-subtitle" style="margin-top: 48px;">tools</h4>
+                        <div class="about-rows-list">
+                            <div class="about-row hover-glow-card">
+                                <div class="about-row-left">
+                                    <img src="./git.png" alt="GitHub" class="row-logo" />
+                                    <span class="row-title">GitHub</span>
+                                </div>
+                                <span class="row-desc">version control & deployment</span>
+                            </div>
+                            <div class="about-row hover-glow-card">
+                                <div class="about-row-left">
+                                    <img src="./vs.png" alt="VS Code" class="row-logo" />
+                                    <span class="row-title">VS Code</span>
+                                </div>
+                                <span class="row-desc">primary code editing IDE</span>
+                            </div>
+                            <div class="about-row hover-glow-card">
+                                <div class="about-row-left">
+                                    <img src="./vite.png" alt="Vite" class="row-logo" />
+                                    <span class="row-title">Vite</span>
+                                </div>
+                                <span class="row-desc">modern frontend build tool</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Certifications -->
+                <section class="about-spacious-section reveal-on-scroll" style="border-bottom: none;">
+                    <h3 class="about-section-eyebrow">03 / awards</h3>
+                    <div class="about-section-content">
+                        <h4 class="about-list-subtitle">certifications</h4>
+                        <div class="about-rows-list">
+                            <div class="about-row hover-glow-card">
+                                <div class="about-row-left">
+                                    <img src="./Udemy.png" alt="Udemy" class="row-logo" />
+                                    <div class="row-title-group">
+                                        <span class="row-title">JavaScript Programming Introduction</span>
+                                        <span class="row-subtitle">Udemy Certificate</span>
+                                    </div>
+                                </div>
+                                <a href="https://www.udemy.com/certificate/UC-18067557-e51b-4061-be61-690d59b0445b/" target="_blank" rel="noopener noreferrer" class="row-link hover-grow-trigger">credentials</a>
+                            </div>
+                            <div class="about-row hover-glow-card">
+                                <div class="about-row-left">
+                                    <img src="./aws.jpg" alt="AWS" class="row-logo" />
+                                    <div class="row-title-group">
+                                        <span class="row-title">Academy Cloud Foundations</span>
+                                        <span class="row-subtitle">AWS Credentials</span>
+                                    </div>
+                                </div>
+                                <a href="https://www.credly.com/go/FtOtcw41" target="_blank" rel="noopener noreferrer" class="row-link hover-grow-trigger">credentials</a>
+                            </div>
+                            <div class="about-row hover-glow-card">
+                                <div class="about-row-left">
+                                    <img src="./aws.jpg" alt="AWS" class="row-logo" />
+                                    <div class="row-title-group">
+                                        <span class="row-title">Academy Data Engineering</span>
+                                        <span class="row-subtitle">AWS Credentials</span>
+                                    </div>
+                                </div>
+                                <a href="https://www.credly.com/go/dhes7w6j" target="_blank" rel="noopener noreferrer" class="row-link hover-grow-trigger">credentials</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </section>
+
+        <!-- VIEW D: Experience (Internship timeline) -->
+        <section id="experience-view" class="app-view">
+            <div class="container subpage-container">
+                
+                <header class="overlay-header reveal-on-scroll">
+                    <p class="overlay-eyebrow">professional history</p>
+                    <h1 class="overlay-title">experience</h1>
+                </header>
+
+                <div class="timeline-wrapper reveal-on-scroll">
+                    <div class="timeline-container">
+                        <!-- Block 1 -->
+                        <div class="timeline-block">
+                            <span class="timeline-date">Jun 2024 - Jul 2024</span>
+                            <div class="timeline-content-box hover-glow-card">
+                                <h3 class="timeline-role">Data Science Intern</h3>
+                                <p class="timeline-company">Unified Mentor</p>
+                                <p class="timeline-text">
+                                    Implemented Python data pipelines and statistical models, analyzed datasets to deliver structural business metrics, and built dynamic visualization reports for project stakeholders.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- VIEW E: Contact (Social coordinates & footer) -->
+        <section id="contact-view" class="app-view">
+            <div class="container subpage-container">
+                
+                <header class="overlay-header reveal-on-scroll">
+                    <p class="overlay-eyebrow">get in touch</p>
+                    <h1 class="overlay-title">contact</h1>
+                </header>
+
+                <div class="contact-content reveal-on-scroll">
+                    <p class="contact-lead">
+                        I am open to new frontend development projects, data science workflows, and developer roles. Send an email to connect!
+                    </p>
+                    <a href="mailto:afsar.memories@gmail.com" class="contact-email hover-grow-trigger">afsar.memories@gmail.com</a>
+                    
+                    <ul class="social-grid">
+                        <li class="social-item hover-glow-card">
+                            <a href="https://github.com/Afsar-D" target="_blank" rel="noopener noreferrer" class="hover-grow-trigger">
+                                <div class="social-icon-wrapper">
+                                    <svg class="social-icon-svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                    <img src="./github.png" class="social-icon-img" alt="GitHub" />
+                                </div>
+                                <span>github</span>
+                            </a>
+                        </li>
+                        <li class="social-item hover-glow-card">
+                            <a href="https://www.instagram.com/d1619118" target="_blank" rel="noopener noreferrer" class="hover-grow-trigger">
+                                <div class="social-icon-wrapper">
+                                    <svg class="social-icon-svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                                    <img src="./insta.png" class="social-icon-img" alt="Instagram" />
+                                </div>
+                                <span>instagram</span>
+                            </a>
+                        </li>
+                        <li class="social-item hover-glow-card">
+                            <a href="https://www.linkedin.com/in/afsard" target="_blank" rel="noopener noreferrer" class="hover-grow-trigger">
+                                <div class="social-icon-wrapper">
+                                    <svg class="social-icon-svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                    <img src="./linkedin.png" class="social-icon-img" alt="LinkedIn" />
+                                </div>
+                                <span>linkedin</span>
+                            </a>
+                        </li>
+                        <li class="social-item hover-glow-card">
+                            <a href="https://x.com/afsar_2512" target="_blank" rel="noopener noreferrer" class="hover-grow-trigger">
+                                <div class="social-icon-wrapper">
+                                    <svg class="social-icon-svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                                    <img src="./twitter.png" class="social-icon-img" alt="Twitter" />
+                                </div>
+                                <span>twitter</span>
+                            </a>
+                        </li>
+                        <li class="social-item hover-glow-card" id="discord-btn" style="cursor: pointer;">
+                            <a href="#" class="hover-grow-trigger" onclick="event.preventDefault();">
+                                <div class="social-icon-wrapper">
+                                    <svg class="social-icon-svg" viewBox="0 0 127.14 96.36" width="20" height="20" fill="currentColor"><path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,52.88,6.83,77.19,77.19,0,0,0,49.58,0,105.15,105.15,0,0,0,19.14,8.07C3.66,31.58-1.95,54.65,1,77.53A105.6,105.6,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.5-5c.88-.65,1.72-1.34,2.51-2a75.58,75.58,0,0,0,72.93,0c.79.71,1.63,1.4,2.51,2a68.43,68.43,0,0,1-10.5,5A77.7,77.7,0,0,0,102.32,85.5a105.6,105.6,0,0,0,31-18.83C130.68,54.65,125.07,31.58,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.83,46,53.83,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.07,46,96.07,53,91,65.69,84.69,65.69Z"/></svg>
+                                    <img src="./dc.png" class="social-icon-img" alt="Discord" />
+                                </div>
+                                <span id="discord-label">discord</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <footer class="contact-footer reveal-on-scroll">
+                    <p class="copyRights">© 2026 Afsar D. All rights reserved.</p>
+                </footer>
+
+            </div>
+        </section>
+
+    </div>
+
+    <!-- 4. Global Floating Bottom Navigation Menu (Persistent in SPA) -->
+    <nav class="floating-nav-menu" id="floating-menu">
+        <div class="menu-scroll-wrapper">
+            <a href="#home" class="menu-item-link hover-grow-trigger" id="menu-home">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="menu-icon"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                <span>home</span>
+            </a>
+            <a href="#works" class="menu-item-link hover-grow-trigger" id="menu-works">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="menu-icon"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                <span>works</span>
+            </a>
+            <a href="#about" class="menu-item-link hover-grow-trigger" id="menu-about">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="menu-icon"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                <span>about</span>
+            </a>
+            <a href="#experience" class="menu-item-link hover-grow-trigger" id="menu-exp">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="menu-icon"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                <span>experience</span>
+            </a>
+            <a href="#contact" class="menu-item-link hover-grow-trigger" id="menu-contact">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="menu-icon"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <span>contact</span>
+            </a>
+            
+            <button type="button" class="menu-music-toggle hover-grow-trigger" id="music-toggle" aria-label="Toggle music">
+                <span class="audio-bar bar-1"></span>
+                <span class="audio-bar bar-2"></span>
+                <span class="audio-bar bar-3"></span>
+            </button>
+            <button type="button" class="menu-theme-dot hover-grow-trigger" id="theme-toggle" aria-label="Toggle theme"></button>
+        </div>
+    </nav>
+
+    <!-- SPA Logic -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // ==========================================
+            // Modern Percentage Loading Screen
+            // ==========================================
+            const percentEl = document.getElementById("loader-percentage");
+            const progressLine = document.getElementById("loader-progress-line");
+            let count = 0;
+
+            const incrementLoader = setInterval(() => {
+                count += Math.floor(Math.random() * 8) + 3;
+                if (count >= 100) {
+                    count = 100;
+                    clearInterval(incrementLoader);
+                    setTimeout(() => {
+                        document.getElementById("loader-overlay").classList.add("loader-fadeout");
+                    }, 250);
+                }
+                percentEl.innerText = count.toString().padStart(2, "0");
+                progressLine.style.width = count + "%";
+            }, 35);
+
+            // ==========================================
+            // Technical Skills Marquee Banner Populate
+            // ==========================================
+            const marqueeTrack = document.getElementById("marquee-track");
+            const skills = [
+                { name: "C", logo: "./c.png", category: "programming" },
+                { name: "Python", logo: "./py.png", category: "data science / scripts" },
+                { name: "HTML", logo: "./html.png", category: "markup language" },
+                { name: "CSS", logo: "./css.png", category: "styling design" },
+                { name: "JavaScript", logo: "./js.png", category: "frontend logic" },
+                { name: "React", logo: "./React.png", category: "ui library" }
+            ];
+
+            const renderSkillCard = (skill) => {
+                return `
+                    <div class="project-marquee-card hover-glow-card">
+                        <img src="${skill.logo}" alt="${skill.name}" class="marquee-skill-logo" />
+                        <h4 class="card-title">${skill.name}</h4>
+                        <span class="card-tags">${skill.category}</span>
+                    </div>
+                `;
+            };
+
+            let marqueeHTML = "";
+            for (let k = 0; k < 3; k++) {
+                skills.forEach(s => {
+                    marqueeHTML += renderSkillCard(s);
+                });
+            }
+            marqueeTrack.innerHTML = marqueeHTML;
+
+            // Clicking marquee card navigates to about page (SPA style)
+            document.querySelectorAll(".project-marquee-card").forEach(card => {
+                card.addEventListener("click", () => {
+                    window.location.hash = "#about";
+                });
+            });
+
+            // ==========================================
+            // Pointer Cursor (Delegated Hover coordinates)
+            // ==========================================
+            const cursor = document.getElementById("custom-cursor");
+            let mouseX = window.innerWidth / 2;
+            let mouseY = window.innerHeight / 2;
+            let currX = mouseX;
+            let currY = mouseY;
+
+            window.addEventListener("pointermove", (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            const animateCursor = () => {
+                currX += (mouseX - currX) * 0.15;
+                currY += (mouseY - currY) * 0.15;
+                cursor.style.transform = `translate3d(${currX}px, ${currY}px, 0) translate(-50%, -50%)`;
+                requestAnimationFrame(animateCursor);
+            };
+            animateCursor();
+
+            // Delegated hover checks to handle dynamic SPA visibility swaps
+            window.addEventListener("pointerover", (e) => {
+                const trigger = e.target.closest(".hover-grow-trigger, a, button, .project-marquee-card, .work-cover-card, .about-row");
+                if (trigger) {
+                    cursor.classList.add("cursor-hover");
+                }
+            });
+
+            window.addEventListener("pointerout", (e) => {
+                const trigger = e.target.closest(".hover-grow-trigger, a, button, .project-marquee-card, .work-cover-card, .about-row");
+                if (trigger) {
+                    cursor.classList.remove("cursor-hover");
+                }
+            });
+
+            // ==========================================
+            // Global Theme Switching Sync (Menu and Home buttons)
+            // ==========================================
+            const htmlElement = document.documentElement;
+            const savedTheme = localStorage.getItem("theme") || "dark";
+            htmlElement.setAttribute("data-theme", savedTheme);
+
+            const toggleTheme = () => {
+                const current = htmlElement.getAttribute("data-theme");
+                const next = current === "dark" ? "light" : "dark";
+                htmlElement.setAttribute("data-theme", next);
+                localStorage.setItem("theme", next);
+            };
+
+            document.getElementById("theme-toggle").addEventListener("click", toggleTheme);
+            document.getElementById("home-theme-toggle").addEventListener("click", toggleTheme);
+
+            // ==========================================
+            // Card Mouse Glow Coordinates
+            // ==========================================
+            window.addEventListener("pointermove", (e) => {
+                const card = e.target.closest(".hover-glow-card");
+                if (card) {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty("--x", `${x}px`);
+                    card.style.setProperty("--y", `${y}px`);
+                }
+            });
+
+            // ==========================================
+            // Dynamic text scramble cycling
+            // ==========================================
+            const phrases = ['Python Dev', 'React Dev', 'Vibe Coder'];
+            let phraseIndex = 0;
+            const scrambleTarget = document.getElementById("dynamic-scramble");
+            const charsList = "!<>-_\\/[]{}—=+*^?#________";
+
+            const runScramble = (newText) => {
+                let iteration = 0;
+                const oldText = scrambleTarget.innerText;
+                const length = Math.max(oldText.length, newText.length);
+                
+                const interval = setInterval(() => {
+                    scrambleTarget.innerText = newText
+                        .split("")
+                        .map((char, index) => {
+                            if (index < iteration) {
+                                return newText[index];
+                            }
+                            return charsList[Math.floor(Math.random() * charsList.length)];
+                        })
+                        .join("")
+                        .substring(0, length);
+
+                    if (iteration >= newText.length) {
+                        clearInterval(interval);
+                        scrambleTarget.innerText = newText;
+                    }
+                    iteration += 1 / 3;
+                }, 30);
+            };
+
+            setInterval(() => {
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                runScramble(phrases[phraseIndex]);
+            }, 2800);
+
+            // ==========================================
+            // Infinite Scroll Snapping Loop Logic
+            // ==========================================
+            const snapContainer = document.getElementById("snap-container");
+            let isLooping = false;
+
+            const initializeWorksSlider = () => {
+                setTimeout(() => {
+                    const sections = snapContainer.querySelectorAll(".works-snap-section");
+                    if (sections.length >= 5) {
+                        snapContainer.style.scrollBehavior = "auto";
+                        snapContainer.scrollTop = sections[1].offsetTop;
+                        snapContainer.style.scrollBehavior = "";
+                    }
+                }, 100);
+            };
+
+            const animateWorksScroll = (scroller) => {
+                const scrollerCenter = scroller.scrollTop + scroller.clientHeight / 2;
+                const sections = snapContainer.querySelectorAll(".works-snap-section");
+                const isMobile = window.innerWidth <= 800;
+
+                sections.forEach(sec => {
+                    if (isMobile && sec.classList.contains("dummy-loop-section")) {
+                        sec.style.opacity = "0";
+                        return;
+                    }
+
+                    const secCenter = sec.offsetTop + sec.clientHeight / 2;
+                    const distanceFromCenter = Math.abs(scrollerCenter - secCenter);
+                    const maxDistance = scroller.clientHeight || 1;
+
+                    let ratio = distanceFromCenter / maxDistance;
+                    if (ratio > 1) ratio = 1;
+
+                    const scale = 1 - (ratio * 0.08);
+                    const opacity = 1 - (ratio * 0.6);
+                    const translateY = ratio * 20;
+
+                    const card = sec.querySelector(".work-cover-card");
+                    const info = sec.querySelector(".work-info-col");
+
+                    if (card) {
+                        card.style.transform = `scale(${scale})`;
+                        card.style.opacity = opacity;
+                        card.style.transition = "opacity 0.1s ease-out, transform 0.1s ease-out";
+                    }
+                    if (info) {
+                        info.style.opacity = opacity;
+                        info.style.transform = `translateY(${translateY}px)`;
+                        info.style.transition = "opacity 0.1s ease-out, transform 0.1s ease-out";
+                    }
+                });
+            };
+
+            snapContainer.addEventListener("scroll", () => {
+                if (isLooping) return;
+
+                const scrollTop = snapContainer.scrollTop;
+                const sections = snapContainer.querySelectorAll(".works-snap-section");
+                if (sections.length < 5) return;
+
+                const t0 = 10;
+                const t4 = sections[4].offsetTop - 10;
+
+                if (scrollTop <= t0) {
+                    isLooping = true;
+                    snapContainer.style.scrollBehavior = "auto";
+                    snapContainer.scrollTop = sections[3].offsetTop;
+                    snapContainer.style.scrollBehavior = "";
+                    setTimeout(() => { isLooping = false; }, 80);
+                } 
+                else if (scrollTop >= t4) {
+                    isLooping = true;
+                    snapContainer.style.scrollBehavior = "auto";
+                    snapContainer.scrollTop = sections[1].offsetTop;
+                    snapContainer.style.scrollBehavior = "";
+                    setTimeout(() => { isLooping = false; }, 80);
+                }
+
+                animateWorksScroll(snapContainer);
+            });
+
+            document.getElementById("works-view").addEventListener("scroll", () => {
+                animateWorksScroll(document.getElementById("works-view"));
+            });
+
+            // About Page Scroll Driven Parallax
+            const aboutView = document.getElementById("about-view");
+            const animateAboutScroll = () => {
+                const sections = aboutView.querySelectorAll(".about-spacious-section");
+                sections.forEach(sec => {
+                    const rect = sec.getBoundingClientRect();
+                    const viewHeight = window.innerHeight;
+
+                    const secCenter = rect.top + rect.height / 2;
+                    const viewCenter = viewHeight / 2;
+                    const dist = Math.abs(viewCenter - secCenter);
+
+                    let ratio = dist / (viewHeight * 0.8);
+                    if (ratio > 1) ratio = 1;
+
+                    const opacity = 1 - (ratio * 0.55);
+                    const translateY = ratio * 15;
+
+                    const content = sec.querySelector(".about-section-content");
+                    const eyebrow = sec.querySelector(".about-section-eyebrow");
+
+                    if (content) {
+                        content.style.opacity = opacity;
+                        content.style.transform = `translateY(${translateY}px)`;
+                        content.style.transition = "opacity 0.12s ease-out, transform 0.12s ease-out";
+                    }
+                    if (eyebrow) {
+                        eyebrow.style.opacity = opacity;
+                        eyebrow.style.transition = "opacity 0.12s ease-out";
+                    }
+                });
+            };
+
+            aboutView.addEventListener("scroll", animateAboutScroll);
+
+            // ==========================================
+            // Intersection Observer Reveal Animations
+            // ==========================================
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const parent = entry.target.parentNode;
+                        const siblings = Array.from(parent.children);
+                        const index = siblings.indexOf(entry.target);
+                        const delay = Math.min(index * 60, 360);
+                        entry.target.style.transitionDelay = `${delay}ms`;
+                        entry.target.classList.add("is-visible");
+                    }
+                });
+            }, { threshold: 0.02 });
+
+            const triggerScrollReveals = () => {
+                const revealElements = document.querySelectorAll(".reveal-on-scroll");
+                revealElements.forEach(el => revealObserver.observe(el));
+            };
+
+            // ==========================================
+            // SPA Routing Mechanism
+            // ==========================================
+            const views = {
+                home: document.getElementById("home-view"),
+                works: document.getElementById("works-view"),
+                about: document.getElementById("about-view"),
+                experience: document.getElementById("experience-view"),
+                contact: document.getElementById("contact-view")
+            };
+
+            const menuLinks = {
+                home: document.getElementById("menu-home"),
+                works: document.getElementById("menu-works"),
+                about: document.getElementById("menu-about"),
+                experience: document.getElementById("menu-exp"),
+                contact: document.getElementById("menu-contact")
+            };
+
+            const floatingMenu = document.getElementById("floating-menu");
+
+            const handleRoute = (hash) => {
+                let viewId = hash.replace("#", "") || "home";
+                if (!views[viewId]) viewId = "home";
+
+                // Deactivate all views and menu links
+                Object.keys(views).forEach(key => {
+                    views[key].classList.remove("active-view");
+                });
+                Object.keys(menuLinks).forEach(key => {
+                    menuLinks[key].classList.remove("active-page");
+                });
+
+                // Activate selected view
+                views[viewId].classList.add("active-view");
+                
+                // Show/hide persistent floating menu based on view
+                if (viewId === "home") {
+                    floatingMenu.classList.remove("menu-visible");
+                    menuLinks.home.classList.add("active-page");
+                } else {
+                    floatingMenu.classList.add("menu-visible");
+                    menuLinks[viewId].classList.add("active-page");
+                }
+
+                // Smoothly scroll window to top on view changes
+                window.scrollTo({ top: 0, behavior: "auto" });
+
+                // Run Intersection Observer triggers immediately for new view
+                triggerScrollReveals();
+                
+                // Trigger works slider initial positioning if active
+                if (viewId === "works") {
+                    initializeWorksSlider();
+                    setTimeout(() => {
+                        const isMobile = window.innerWidth <= 800;
+                        animateWorksScroll(isMobile ? document.getElementById("works-view") : snapContainer);
+                    }, 120);
+                }
+
+                if (viewId === "about") {
+                    setTimeout(animateAboutScroll, 50);
+                }
+            };
+
+            // Discord click handler to copy username
+            const discordBtn = document.getElementById("discord-btn");
+            const discordLabel = document.getElementById("discord-label");
+            if (discordBtn && discordLabel) {
+                discordBtn.addEventListener("click", () => {
+                    navigator.clipboard.writeText("afsar_d25").then(() => {
+                        discordLabel.innerText = "copied!";
+                        setTimeout(() => {
+                            discordLabel.innerText = "discord";
+                        }, 1500);
+                    }).catch(err => {
+                        console.error("Failed to copy discord username:", err);
+                    });
+                });
+            }
+
+            window.addEventListener("hashchange", () => {
+                handleRoute(window.location.hash);
+            });
+
+            // Run initial routing check
+            handleRoute(window.location.hash);
+
+        });
+    </script>
+    <script src="./music.js"></script>
+</body>
+</html>
