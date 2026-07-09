@@ -230,6 +230,7 @@ body {
     position: relative;
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     overflow: hidden;
     padding: 40px;
 }
@@ -445,12 +446,14 @@ body {
     overflow: hidden;
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
 }
 
 .spa-views-wrapper {
     position: relative;
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     overflow: hidden;
 }
 
@@ -1291,10 +1294,10 @@ body.menu-lock {
         padding: 24px;
     }
     
-    .top-left { top: 24px; left: 24px; }
-    .top-right { top: 24px; right: 24px; }
-    .bottom-left { bottom: 68px; left: 24px; }
-    .bottom-right { bottom: 68px; right: 24px; }
+    .top-left { top: 32px; left: 24px; }
+    .top-right { top: 32px; right: 24px; }
+    .bottom-left { bottom: 76px; left: 24px; }
+    .bottom-right { bottom: 76px; right: 24px; }
     
     .nav-trigger {
         font-size: 1.25rem;
@@ -1306,7 +1309,7 @@ body.menu-lock {
     
     .bottom-center-brand {
         display: flex !important;
-        bottom: 20px;
+        bottom: 24px;
     }
     
     .overlay-scroll-container {
