@@ -893,18 +893,38 @@
             };
 
             const floatingMenu = document.getElementById("floating-menu");
+            
+            const viewIndices = { home: 0, works: 1, about: 2, experience: 3, contact: 4 };
+            let currentViewId = window.location.hash.replace("#", "") || "home";
+            if (!viewIndices[currentViewId]) currentViewId = "home";
 
             const handleRoute = (hash) => {
                 let viewId = hash.replace("#", "") || "home";
                 if (!views[viewId]) viewId = "home";
 
+                const prevViewId = currentViewId;
+                currentViewId = viewId;
+
                 // Deactivate all views and menu links
                 Object.keys(views).forEach(key => {
-                    views[key].classList.remove("active-view");
+                    views[key].classList.remove("active-view", "slide-from-left", "slide-from-right");
                 });
                 Object.keys(menuLinks).forEach(key => {
                     menuLinks[key].classList.remove("active-page");
                 });
+
+                // Apply horizontal slide direction if transitioning between subpages
+                if (prevViewId !== "home" && viewId !== "home" && prevViewId !== viewId) {
+                    const prevIndex = viewIndices[prevViewId];
+                    const nextIndex = viewIndices[viewId];
+                    if (nextIndex > prevIndex) {
+                        views[viewId].classList.add("slide-from-right");
+                    } else {
+                        views[viewId].classList.add("slide-from-left");
+                    }
+                    // Force a browser paint reflow to commit transition state
+                    views[viewId].offsetHeight;
+                }
 
                 // Activate selected view
                 views[viewId].classList.add("active-view");

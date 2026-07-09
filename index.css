@@ -487,6 +487,14 @@ body {
     transform: scale(0.97);
 }
 
+/* Horizontal slide transitions when switching directly between subpages */
+.app-view.slide-from-left {
+    transform: translate(-48px, 0) scale(0.98) !important;
+}
+.app-view.slide-from-right {
+    transform: translate(48px, 0) scale(0.98) !important;
+}
+
 .app-view.active-view {
     opacity: 1;
     pointer-events: auto;
