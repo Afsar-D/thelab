@@ -27,7 +27,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./index.css?v=3.8" />
+    <link rel="stylesheet" href="./index.css?v=3.9" />
 </head>
 <body class="spa-body">
 
@@ -319,12 +319,6 @@
                         </div>
                     </div>
                 </section>
-
-            </div>
-        </section>
-
-            </div>
-        </section>
 
             </div>
         </section>
@@ -926,6 +920,16 @@
                 return "home";
             };
 
+            // Dynamically detect subdirectory path base (e.g. /thelab/ on GitHub Pages)
+            const getBasePath = () => {
+                const path = window.location.pathname;
+                if (path.startsWith("/thelab")) {
+                    return "/thelab";
+                }
+                return "";
+            };
+            const basepath = getBasePath();
+
             let currentViewId = getRouteFromUrl();
 
             const handleRoute = (viewId) => {
@@ -965,7 +969,7 @@
                 }
                 
                 // Show/hide persistent floating menu and set clean path history states
-                const targetPath = viewId === "home" ? "/" : "/" + viewId;
+                const targetPath = basepath + (viewId === "home" ? "/" : "/" + viewId);
                 if (viewId === "home") {
                     floatingMenu.classList.remove("menu-visible");
                     menuLinks.home.classList.add("active-page");
@@ -1011,7 +1015,7 @@
                     const viewId = href.replace("#", "");
                     if (viewIndices[viewId] !== undefined) {
                         e.preventDefault();
-                        const nextPath = viewId === "home" ? "/" : "/" + viewId;
+                        const nextPath = basepath + (viewId === "home" ? "/" : "/" + viewId);
                         history.pushState(null, null, nextPath);
                         handleRoute(viewId);
                     }
@@ -1143,7 +1147,7 @@
                     }
                     
                     if (currentView !== "home") {
-                        history.pushState(null, null, "/");
+                        history.pushState(null, null, basepath + "/");
                         handleRoute("home");
                         playClickSound();
                     }
