@@ -836,9 +836,16 @@
             };
 
             let scrollEndTimeout = null;
+            let scrollRequestActive = false;
             snapContainer.addEventListener("scroll", () => {
-                // Perform real-time parallax scaling/fading updates
-                animateWorksScroll(snapContainer);
+                // Perform real-time parallax scaling/fading updates inside requestAnimationFrame for smooth mobile renders
+                if (!scrollRequestActive) {
+                    scrollRequestActive = true;
+                    requestAnimationFrame(() => {
+                        animateWorksScroll(snapContainer);
+                        scrollRequestActive = false;
+                    });
+                }
 
                 if (isLooping) return;
 
