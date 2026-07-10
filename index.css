@@ -906,14 +906,14 @@ body {
     max-width: 440px;
     text-decoration: none;
     position: relative;
-    overflow: hidden; /* Crops scaled cover cards */
-    border-radius: 20px; /* Clips card corners correctly */
+    overflow: hidden; 
+    border-radius: 24px; /* Album cover art rounded borders */
 }
 
 .work-cover-card {
     aspect-ratio: 1 / 1;
     width: 100%;
-    border-radius: 20px;
+    border-radius: 24px;
     position: relative;
     overflow: hidden;
     background-color: var(--bg-secondary);
@@ -922,14 +922,13 @@ body {
     transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.45s;
     cursor: pointer;
     will-change: transform, opacity; /* isolates zooms and reveals on GPU */
-    transform: scale(1.025); /* Default scale crops the borders */
 }
 
 @media (hover: hover) {
     .work-cover-card:hover {
-        transform: scale(1.025) !important; /* Keep card boundaries completely static on hover */
-        border-color: var(--border-color) !important; /* Keep border color static (no hover colors) */
-        box-shadow: none !important; /* No shadow */
+        transform: scale(1) !important; /* Keep card boundaries completely static on hover */
+        border-color: var(--border-color) !important; 
+        box-shadow: none !important; 
     }
 }
 
@@ -1457,21 +1456,27 @@ body.menu-lock {
     }
 
     .works-vertical-list {
-        padding: 60px 16px !important;
-        gap: 120px !important; /* Premium luxury vertical spacing between stacked projects on mobile */
-        scroll-snap-type: none !important; /* Disable scroll snapping */
-        overflow-y: auto !important; /* Native vertical scrolling */
+        padding: 0 16px !important;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        overflow-y: auto !important;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: y mandatory !important;
+        scroll-behavior: smooth;
     }
 
     .works-item-section {
-        height: auto !important; /* Flow naturally without cropping */
-        scroll-snap-align: none !important;
-        scroll-snap-stop: normal !important;
+        width: 100%;
+        height: 100% !important; /* Force full screen height on snapping mobile viewport */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        scroll-snap-align: center !important;
+        scroll-snap-stop: always !important;
         flex-shrink: 0;
-    }
-
-    .dummy-loop-section {
-        display: none !important; /* Hide clones on mobile to avoid duplicates */
     }
 
     .works-split-layout {
@@ -1479,13 +1484,13 @@ body.menu-lock {
         flex-direction: column !important; /* Forces text details on top, cover card below on mobile */
         justify-content: center;
         align-items: center;
-        gap: 10px !important;
-        height: 100%;
+        gap: 15px !important;
+        height: 100% !important;
         width: 100%;
         text-align: center;
-        padding: 24px;
+        padding: 16px;
         box-sizing: border-box;
-        transition: all 0.5s ease-in-out;
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
     
     .work-info-col {
@@ -1494,8 +1499,8 @@ body.menu-lock {
         max-width: 100%;
         opacity: 1;
         transform: translateY(0);
-        transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        max-height: 380px;
+        transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        max-height: 400px;
         margin-right: 0 !important;
         will-change: transform, opacity, max-height;
     }
@@ -1504,11 +1509,11 @@ body.menu-lock {
     .works-split-layout.collapsed-view .work-info-col {
         opacity: 0 !important;
         pointer-events: none !important;
-        transform: translateY(20px) !important;
+        transform: translateY(15px) !important;
         max-height: 0 !important;
         overflow: hidden !important;
         margin-bottom: 0 !important;
-        transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
     
     .work-cover-col {
@@ -1517,7 +1522,7 @@ body.menu-lock {
         display: flex;
         flex-direction: column;
         align-items: center;
-        transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         will-change: transform;
     }
 
@@ -1530,11 +1535,11 @@ body.menu-lock {
     }
     
     .works-split-layout.collapsed-view .work-cover-col {
-        transform: translateY(0) scale(1.02);
+        transform: translateY(0);
     }
     
     .works-split-layout:not(.collapsed-view) .work-cover-col {
-        transform: translateY(-10px) scale(0.95);
+        transform: translateY(-10px);
     }
     
     .details-close-btn {
@@ -1561,9 +1566,18 @@ body.menu-lock {
     .work-cover-card {
         aspect-ratio: 1 / 1 !important;
         width: 100% !important;
-        max-width: 340px !important; /* Increased from 240px to scale dynamically on tablets/landscape */
         height: auto !important;
-        transform: scale(1.025); /* Crops borders on mobile */
+        transition: max-width 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+    }
+
+    .works-split-layout.collapsed-view .work-cover-card {
+        max-width: 280px !important; /* Large, bold album cover visual when collapsed */
+        opacity: 1;
+    }
+
+    .works-split-layout:not(.collapsed-view) .work-cover-card {
+        max-width: 180px !important; /* Smoothly scales down to fit screen alongside description on select */
+        opacity: 0.95;
     }
 
     .work-snap-num {
@@ -1614,6 +1628,11 @@ body.menu-lock {
     .overlay-scroll-container {
         padding: 90px 24px 40px;
     }
+
+    .menu-scroll-wrapper {
+        padding: 8px 16px !important;
+        gap: 14px !important;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1629,6 +1648,18 @@ body.menu-lock {
 
     .nav-trigger {
         font-size: 1.05rem !important;
+    }
+
+    .menu-scroll-wrapper {
+        padding: 6px 12px !important;
+        gap: 8px !important;
+    }
+    .menu-link {
+        font-size: 0.8rem !important;
+    }
+    .menu-scroll-wrapper svg {
+        width: 14px !important;
+        height: 14px !important;
     }
     
     .logo-initials {
