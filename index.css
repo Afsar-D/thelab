@@ -516,6 +516,10 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
     will-change: transform, opacity; /* hardware GPU isolation for fluid subpage transitions */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
 }
 
 /* Quadrant-Specific Transitions matching their home page corner slots */
@@ -1525,7 +1529,7 @@ body.menu-lock {
         text-align: center;
         padding: 16px;
         box-sizing: border-box;
-        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        transition: none !important; /* Eliminate layout reflow transition to prevent jank */
     }
     
     .work-info-col {
@@ -1534,7 +1538,7 @@ body.menu-lock {
         max-width: 100%;
         opacity: 1;
         transform: translateY(0);
-        transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), max-height 0.25s ease-out;
         max-height: 400px;
         margin-right: 0 !important;
         will-change: transform, opacity, max-height;
@@ -1548,7 +1552,7 @@ body.menu-lock {
         max-height: 0 !important;
         overflow: hidden !important;
         margin-bottom: 0 !important;
-        transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), max-height 0.25s ease-out !important;
     }
     
     .work-cover-col {
@@ -1557,7 +1561,7 @@ body.menu-lock {
         display: flex;
         flex-direction: column;
         align-items: center;
-        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         will-change: transform;
     }
 
@@ -1601,17 +1605,19 @@ body.menu-lock {
     .work-cover-card {
         aspect-ratio: 1 / 1 !important;
         width: 100% !important;
+        max-width: 260px !important; /* Static layout size to avoid layout reflows */
         height: auto !important;
-        transition: max-width 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+        will-change: transform, opacity;
     }
 
     .works-split-layout.collapsed-view .work-cover-card {
-        max-width: 280px !important; /* Large, bold album cover visual when collapsed */
+        transform: scale(1) !important; /* GPU accelerated resting state */
         opacity: 1;
     }
 
     .works-split-layout:not(.collapsed-view) .work-cover-card {
-        max-width: 180px !important; /* Smoothly scales down to fit screen alongside description on select */
+        transform: scale(0.72) !important; /* GPU accelerated scale-down */
         opacity: 0.95;
     }
 
