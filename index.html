@@ -27,7 +27,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./index.css?v=1.3" />
+    <link rel="stylesheet" href="./index.css?v=3.5" />
 </head>
 <body class="spa-body">
 
@@ -47,8 +47,13 @@
     <!-- Click Sound Effect -->
     <audio id="click-sound" src="./mixkit-mouse-click-close-1113.wav" preload="auto"></audio>
 
-    <!-- 2. Custom Magnetic Pointer Cursor (Kalinsky style blend mode difference dot) -->
-    <div id="custom-cursor" class="custom-cursor" aria-hidden="true"></div>
+    <!-- 2. Custom Magnetic Pointer Cursor (Focus-Frame Corner Brackets) -->
+    <div id="focus-cursor" class="focus-cursor" aria-hidden="true">
+        <span class="corner-bracket tl"></span>
+        <span class="corner-bracket tr"></span>
+        <span class="corner-bracket bl"></span>
+        <span class="corner-bracket br"></span>
+    </div>
 
     <!-- 3. SPA Views Container -->
     <div class="spa-views-wrapper">
@@ -101,7 +106,7 @@
 
                 <!-- Brand & Controls (Static at bottom center of Home) -->
                 <div class="bottom-center-brand">
-                    <span class="logo-initials">a d</span>
+                    <span class="logo-initials"></span>
                     <button type="button" class="music-toggle-btn hover-grow-trigger" id="home-music-toggle" aria-label="Toggle music">
                         <span class="audio-bar bar-1"></span>
                         <span class="audio-bar bar-2"></span>
@@ -115,12 +120,12 @@
             </div>
         </section>
 
-        <!-- VIEW B: Works (Vertical Scroll-Snap Slider) -->
+        <!-- VIEW B: Works (Vertical scrolling list with infinite loop) -->
         <section id="works-view" class="app-view">
-            <div class="works-snap-container" id="snap-container">
+            <div class="works-vertical-list" id="works-list">
 
                 <!-- DUMMY SECTION: Project 3 (For Infinite Loop) -->
-                <section class="works-snap-section dummy-loop-section">
+                <section class="works-item-section dummy-loop-section">
                     <div class="works-split-layout collapsed-view">
                         <div class="work-info-col">
                             <button type="button" class="details-close-btn hover-grow-trigger" aria-label="Close details">
@@ -146,7 +151,7 @@
                         </div>
                         <div class="work-cover-col">
                             <a href="https://afsar-d.github.io/Latte-Theory/" target="_blank" rel="noopener noreferrer" class="work-cover-link hover-grow-trigger">
-                                <div class="work-cover-card hover-glow-card image-cover" style="background-image: url('./LatteCover.png');">
+                                <div class="work-cover-card image-cover" style="background-image: url('./LatteCover.png');">
                                     <div class="cover-overlay-indicator">
                                         <span class="indicator-collapsed">click for details</span>
                                         <span class="indicator-expanded">visit website</span>
@@ -159,7 +164,7 @@
                 </section>
 
                 <!-- Project 1 Section -->
-                <section class="works-snap-section">
+                <section class="works-item-section">
                     <div class="works-split-layout collapsed-view">
                         <div class="work-info-col">
                             <button type="button" class="details-close-btn hover-grow-trigger" aria-label="Close details">
@@ -185,7 +190,7 @@
                         </div>
                         <div class="work-cover-col">
                             <a href="https://workspacelab.vercel.app/" target="_blank" rel="noopener noreferrer" class="work-cover-link hover-grow-trigger">
-                                <div class="work-cover-card hover-glow-card image-cover portfolio-cover-card">
+                                <div class="work-cover-card image-cover portfolio-cover-card">
                                     <div class="cover-overlay-indicator">
                                         <span class="indicator-collapsed">click for details</span>
                                         <span class="indicator-expanded">visit website</span>
@@ -198,7 +203,7 @@
                 </section>
 
                 <!-- Project 2 Section -->
-                <section class="works-snap-section">
+                <section class="works-item-section">
                     <div class="works-split-layout collapsed-view">
                         <div class="work-info-col">
                             <button type="button" class="details-close-btn hover-grow-trigger" aria-label="Close details">
@@ -225,7 +230,7 @@
                         </div>
                         <div class="work-cover-col">
                             <a href="https://liquids-library.vercel.app/" target="_blank" rel="noopener noreferrer" class="work-cover-link hover-grow-trigger">
-                                <div class="work-cover-card hover-glow-card image-cover" style="background-image: url('./LiquidCover.png');">
+                                <div class="work-cover-card image-cover" style="background-image: url('./LiquidCover.png');">
                                     <div class="cover-overlay-indicator">
                                         <span class="indicator-collapsed">click for details</span>
                                         <span class="indicator-expanded">visit website</span>
@@ -238,7 +243,7 @@
                 </section>
 
                 <!-- Project 3 Section -->
-                <section class="works-snap-section">
+                <section class="works-item-section">
                     <div class="works-split-layout collapsed-view">
                         <div class="work-info-col">
                             <button type="button" class="details-close-btn hover-grow-trigger" aria-label="Close details">
@@ -264,7 +269,7 @@
                         </div>
                         <div class="work-cover-col">
                             <a href="https://afsar-d.github.io/Latte-Theory/" target="_blank" rel="noopener noreferrer" class="work-cover-link hover-grow-trigger">
-                                <div class="work-cover-card hover-glow-card image-cover" style="background-image: url('./LatteCover.png');">
+                                <div class="work-cover-card image-cover" style="background-image: url('./LatteCover.png');">
                                     <div class="cover-overlay-indicator">
                                         <span class="indicator-collapsed">click for details</span>
                                         <span class="indicator-expanded">visit website</span>
@@ -277,7 +282,7 @@
                 </section>
 
                 <!-- DUMMY SECTION: Project 1 (For Infinite Loop) -->
-                <section class="works-snap-section dummy-loop-section">
+                <section class="works-item-section dummy-loop-section">
                     <div class="works-split-layout collapsed-view">
                         <div class="work-info-col">
                             <button type="button" class="details-close-btn hover-grow-trigger" aria-label="Close details">
@@ -303,7 +308,7 @@
                         </div>
                         <div class="work-cover-col">
                             <a href="https://workspacelab.vercel.app/" target="_blank" rel="noopener noreferrer" class="work-cover-link hover-grow-trigger">
-                                <div class="work-cover-card hover-glow-card image-cover portfolio-cover-card">
+                                <div class="work-cover-card image-cover portfolio-cover-card">
                                     <div class="cover-overlay-indicator">
                                         <span class="indicator-collapsed">click for details</span>
                                         <span class="indicator-expanded">visit website</span>
@@ -314,6 +319,12 @@
                         </div>
                     </div>
                 </section>
+
+            </div>
+        </section>
+
+            </div>
+        </section>
 
             </div>
         </section>
@@ -668,39 +679,85 @@
             });
 
             // ==========================================
-            // Pointer Cursor (Delegated Hover coordinates)
+            // Pointer Cursor (Focus-Frame Crosshair Cursor)
             // ==========================================
-            const cursor = document.getElementById("custom-cursor");
+            const focusCursor = document.getElementById("focus-cursor");
             let mouseX = window.innerWidth / 2;
             let mouseY = window.innerHeight / 2;
+            
+            // Current interpolated visual states
             let currX = mouseX;
             let currY = mouseY;
+            let currW = 24;
+            let currH = 24;
+
+            // Target dimensions and positions
+            let targetX = mouseX;
+            let targetY = mouseY;
+            let targetW = 24;
+            let targetH = 24;
+
+            let isLocked = false;
+            let targetEl = null;
 
             window.addEventListener("pointermove", (e) => {
                 mouseX = e.clientX;
                 mouseY = e.clientY;
+                if (!isLocked) {
+                    targetX = mouseX;
+                    targetY = mouseY;
+                }
             });
 
             const animateCursor = () => {
-                currX += (mouseX - currX) * 0.15;
-                currY += (mouseY - currY) * 0.15;
-                cursor.style.transform = `translate3d(${currX}px, ${currY}px, 0) translate(-50%, -50%)`;
+                if (isLocked && targetEl) {
+                    const rect = targetEl.getBoundingClientRect();
+                    const padding = 12;
+                    targetW = rect.width + padding;
+                    targetH = rect.height + padding;
+                    targetX = rect.left + rect.width / 2;
+                    targetY = rect.top + rect.height / 2;
+                } else {
+                    targetW = 24;
+                    targetH = 24;
+                    targetX = mouseX;
+                    targetY = mouseY;
+                }
+
+                // Smooth interpolation (lerp of 0.22 for premium lock transition)
+                currX += (targetX - currX) * 0.22;
+                currY += (targetY - currY) * 0.22;
+                currW += (targetW - currW) * 0.22;
+                currH += (targetH - currH) * 0.22;
+
+                if (focusCursor) {
+                    focusCursor.style.left = `${currX}px`;
+                    focusCursor.style.top = `${currY}px`;
+                    focusCursor.style.width = `${currW}px`;
+                    focusCursor.style.height = `${currH}px`;
+                    focusCursor.style.transform = `translate3d(-50%, -50%, 0)`;
+                }
+
                 requestAnimationFrame(animateCursor);
             };
             animateCursor();
 
-            // Delegated hover checks to handle dynamic SPA visibility swaps
+            // Delegated pointerover/pointerout to lock cursor size/position onto elements
             window.addEventListener("pointerover", (e) => {
                 const trigger = e.target.closest(".hover-grow-trigger, a, button, .project-marquee-card, .work-cover-card, .about-row");
                 if (trigger) {
-                    cursor.classList.add("cursor-hover");
+                    isLocked = true;
+                    targetEl = trigger;
+                    if (focusCursor) focusCursor.classList.add("hovering");
                 }
             });
 
             window.addEventListener("pointerout", (e) => {
                 const trigger = e.target.closest(".hover-grow-trigger, a, button, .project-marquee-card, .work-cover-card, .about-row");
-                if (trigger) {
-                    cursor.classList.remove("cursor-hover");
+                if (trigger && trigger === targetEl) {
+                    isLocked = false;
+                    targetEl = null;
+                    if (focusCursor) focusCursor.classList.remove("hovering");
                 }
             });
 
@@ -774,220 +831,8 @@
             }, 2800);
 
             // ==========================================
-            // Infinite Scroll Snapping Loop Logic
-            // ==========================================
-            const snapContainer = document.getElementById("snap-container");
-            let isLooping = false;
-
-            const getCenterScrollLeft = (index) => {
-                const sections = snapContainer.querySelectorAll(".works-snap-section");
-                const sec = sections[index];
-                if (!sec) return 0;
-                
-                const scrollerWidth = snapContainer.clientWidth || window.innerWidth;
-                const isMobile = window.innerWidth <= 800;
-                const secWidth = sec.clientWidth || (scrollerWidth * (isMobile ? 0.85 : 0.8));
-                const secOffset = sec.offsetLeft || (index * secWidth);
-                
-                return secOffset - (scrollerWidth - secWidth) / 2;
-            };
-
-            let isWheelScrolling = false;
-            let currentProjectIndex = 1;
-
-            const initializeWorksSlider = () => {
-                currentProjectIndex = 1;
-                setTimeout(() => {
-                    const sections = snapContainer.querySelectorAll(".works-snap-section");
-                    if (sections.length >= 5) {
-                        snapContainer.style.scrollBehavior = "auto";
-                        snapContainer.scrollLeft = getCenterScrollLeft(1);
-                        snapContainer.style.scrollBehavior = "";
-                    }
-                }, 100);
-            };
-
-            const animateWorksScroll = (scroller) => {
-                if (CSS.supports && CSS.supports("animation-timeline", "view()")) {
-                    return; // Skip JS updates on browsers supporting hardware-accelerated CSS scroll animations!
-                }
-                const scrollerCenter = scroller.scrollLeft + scroller.clientWidth / 2;
-                const sections = snapContainer.querySelectorAll(".works-snap-section");
-
-                sections.forEach(sec => {
-                    const secCenter = sec.offsetLeft + sec.clientWidth / 2;
-                    const distanceFromCenter = Math.abs(scrollerCenter - secCenter);
-                    const maxDistance = scroller.clientWidth || 1;
-
-                    let ratio = distanceFromCenter / maxDistance;
-                    if (ratio > 1) ratio = 1;
-
-                    const scale = 1 - (ratio * 0.18);
-                    const opacity = 1 - (ratio * 0.7);
-
-                    const card = sec.querySelector(".work-cover-card");
-                    const info = sec.querySelector(".work-info-col");
-
-                    if (card) {
-                        card.style.transform = `scale(${scale})`;
-                        card.style.opacity = opacity;
-                        card.style.transition = "opacity 0.1s ease-out, transform 0.1s ease-out";
-                    }
-                    if (info) {
-                        info.style.opacity = opacity;
-                        info.style.transition = "opacity 0.1s ease-out";
-                    }
-                });
-            };
-
-            let scrollEndTimeout = null;
-            let scrollRequestActive = false;
-            snapContainer.addEventListener("scroll", () => {
-                // Perform real-time parallax scaling/fading updates inside requestAnimationFrame for smooth mobile renders
-                if (!scrollRequestActive) {
-                    scrollRequestActive = true;
-                    requestAnimationFrame(() => {
-                        animateWorksScroll(snapContainer);
-                        scrollRequestActive = false;
-                    });
-                }
-
-                if (isLooping) return;
-
-                const sections = snapContainer.querySelectorAll(".works-snap-section");
-                if (sections.length < 5) return;
-
-                // Debounce loop snaps to prevent scroll momentum collision cuts
-                clearTimeout(scrollEndTimeout);
-                scrollEndTimeout = setTimeout(() => {
-                    const scrollLeft = snapContainer.scrollLeft;
-                    const t0 = getCenterScrollLeft(0) + 15;
-                    const t4 = getCenterScrollLeft(4) - 15;
-
-                    if (scrollLeft <= t0) {
-                        isLooping = true;
-                        snapContainer.style.scrollBehavior = "auto";
-                        snapContainer.scrollLeft = getCenterScrollLeft(3);
-                        snapContainer.style.scrollBehavior = "";
-                        currentProjectIndex = 3;
-                        setTimeout(() => { isLooping = false; }, 60);
-                    } 
-                    else if (scrollLeft >= t4) {
-                        isLooping = true;
-                        snapContainer.style.scrollBehavior = "auto";
-                        snapContainer.scrollLeft = getCenterScrollLeft(1);
-                        snapContainer.style.scrollBehavior = "";
-                        currentProjectIndex = 1;
-                        setTimeout(() => { isLooping = false; }, 60);
-                    } else {
-                        // Dynamically sync currentProjectIndex with the closest centered section when scrolling normally
-                        let closestIndex = currentProjectIndex;
-                        let minDiff = Infinity;
-                        sections.forEach((sec, idx) => {
-                            const diff = Math.abs(scrollLeft - getCenterScrollLeft(idx));
-                            if (diff < minDiff) {
-                                minDiff = diff;
-                                closestIndex = idx;
-                            }
-                        });
-                        currentProjectIndex = closestIndex;
-                    }
-                }, 65);
-            });
-
-            // Translate vertical scroll wheel movements to horizontal page transitions
-            snapContainer.addEventListener("wheel", (e) => {
-                const absY = Math.abs(e.deltaY);
-                const absX = Math.abs(e.deltaX);
-                
-                // Switch project slides if vertical scroll is dominant
-                if (absY > 0 && absY > absX) {
-                    e.preventDefault();
-                    
-                    if (snapContainer.classList.contains("scroll-locked") || isWheelScrolling || isLooping) return;
-                    
-                    const sections = snapContainer.querySelectorAll(".works-snap-section");
-                    if (sections.length < 5) return;
-                    
-                    isWheelScrolling = true;
-                    
-                    // Determine slide direction
-                    if (e.deltaY > 0) {
-                        currentProjectIndex++;
-                    } else {
-                        currentProjectIndex--;
-                    }
-                    
-                    // Keep index within logical bounds
-                    if (currentProjectIndex < 0) currentProjectIndex = 0;
-                    if (currentProjectIndex >= sections.length) currentProjectIndex = sections.length - 1;
-                    
-                    // Smoothly scroll to the target project center
-                    snapContainer.style.scrollBehavior = "smooth";
-                    snapContainer.scrollLeft = getCenterScrollLeft(currentProjectIndex);
-                    
-                    // Release animation lock after transition completes
-                    setTimeout(() => {
-                        snapContainer.style.scrollBehavior = "";
-                        isWheelScrolling = false;
-                    }, 500);
-                }
-            }, { passive: false });
-
-            // Mobile touch swipe gestures (both vertical and horizontal swipes trigger slide switches)
-            let touchStartX = 0;
-            let touchStartY = 0;
-
-            snapContainer.addEventListener("touchstart", (e) => {
-                if (snapContainer.classList.contains("scroll-locked")) return;
-                touchStartX = e.touches[0].clientX;
-                touchStartY = e.touches[0].clientY;
-            }, { passive: true });
-
-            snapContainer.addEventListener("touchend", (e) => {
-                if (snapContainer.classList.contains("scroll-locked")) return;
-                if (isWheelScrolling || isLooping) return;
-
-                const touchEndX = e.changedTouches[0].clientX;
-                const touchEndY = e.changedTouches[0].clientY;
-
-                const deltaX = touchStartX - touchEndX;
-                const deltaY = touchStartY - touchEndY;
-
-                const absX = Math.abs(deltaX);
-                const absY = Math.abs(deltaY);
-                const threshold = 40; // minimum distance in px to register a swipe
-
-                // Only intercept vertical swipes (up/down). Let horizontal swipes (left/right) scroll natively!
-                if (absY > absX && absY > threshold) {
-                    e.preventDefault(); // Stop native overscroll bounce/tab reloads
-
-                    const sections = snapContainer.querySelectorAll(".works-snap-section");
-                    if (sections.length < 5) return;
-
-                    isWheelScrolling = true; // Lock triggers to prevent gesture spamming
-
-                    if (deltaY > 0) {
-                        currentProjectIndex++; // Swipe Up -> Next Project
-                    } else {
-                        currentProjectIndex--; // Swipe Down -> Prev Project
-                    }
-
-                    if (currentProjectIndex < 0) currentProjectIndex = 0;
-                    if (currentProjectIndex >= sections.length) currentProjectIndex = sections.length - 1;
-
-                    // Smoothly scroll to the target project center
-                    snapContainer.style.scrollBehavior = "smooth";
-                    snapContainer.scrollLeft = getCenterScrollLeft(currentProjectIndex);
-
-                    setTimeout(() => {
-                        snapContainer.style.scrollBehavior = "";
-                        isWheelScrolling = false;
-                    }, 500);
-                }
-            }, { passive: false });
-
             // About Page Scroll Driven Parallax
+            // ==========================================
             const aboutView = document.getElementById("about-view");
             const animateAboutScroll = () => {
                 const sections = aboutView.querySelectorAll(".about-spacious-section");
@@ -1044,7 +889,7 @@
             };
 
             // ==========================================
-            // SPA Routing Mechanism
+            // SPA Routing Mechanism (Clean Pathnames)
             // ==========================================
             const views = {
                 home: document.getElementById("home-view"),
@@ -1063,13 +908,27 @@
             };
 
             const floatingMenu = document.getElementById("floating-menu");
-            
             const viewIndices = { home: 0, works: 1, about: 2, experience: 3, contact: 4 };
-            let currentViewId = window.location.hash.replace("#", "") || "home";
-            if (!viewIndices[currentViewId]) currentViewId = "home";
+            
+            // Derive current view from either hash or slash pathname route
+            const getRouteFromUrl = () => {
+                const hash = window.location.hash;
+                if (hash) {
+                    const cleanHash = hash.replace("#", "");
+                    if (viewIndices[cleanHash] !== undefined) {
+                        return cleanHash;
+                    }
+                }
+                const path = window.location.pathname.replace(/\/$/, "").split("/").pop();
+                if (path && viewIndices[path] !== undefined) {
+                    return path;
+                }
+                return "home";
+            };
 
-            const handleRoute = (hash) => {
-                let viewId = hash.replace("#", "") || "home";
+            let currentViewId = getRouteFromUrl();
+
+            const handleRoute = (viewId) => {
                 if (!views[viewId]) viewId = "home";
 
                 const prevViewId = currentViewId;
@@ -1105,18 +964,19 @@
                     views[viewId].classList.add("active-view");
                 }
                 
-                // Show/hide persistent floating menu based on view
+                // Show/hide persistent floating menu and set clean path history states
+                const targetPath = viewId === "home" ? "/" : "/" + viewId;
                 if (viewId === "home") {
                     floatingMenu.classList.remove("menu-visible");
                     menuLinks.home.classList.add("active-page");
-                    
-                    // Silently remove the hash when returning home to keep the URL bar clean
-                    if (window.location.hash !== "" && window.location.hash !== "#") {
-                        history.replaceState(null, document.title, window.location.pathname + window.location.search);
-                    }
                 } else {
                     floatingMenu.classList.add("menu-visible");
                     menuLinks[viewId].classList.add("active-page");
+                }
+
+                // Push or replace navigation state cleanly (clears hashes instantly on landing)
+                if (window.location.pathname !== targetPath || window.location.hash) {
+                    history.replaceState(null, document.title, targetPath);
                 }
 
                 // Smoothly scroll window to top on view changes
@@ -1124,19 +984,45 @@
 
                 // Run Intersection Observer triggers immediately for new view
                 triggerScrollReveals();
-                
-                // Trigger works slider initial positioning if active
-                if (viewId === "works") {
-                    initializeWorksSlider();
-                    setTimeout(() => {
-                        animateWorksScroll(snapContainer);
-                    }, 120);
-                }
 
                 if (viewId === "about") {
                     setTimeout(animateAboutScroll, 50);
                 }
+
+                if (viewId === "works") {
+                    const worksList = document.getElementById("works-list");
+                    if (worksList) {
+                        setTimeout(() => {
+                            worksList.style.scrollBehavior = "auto";
+                            worksList.scrollTop = worksList.clientHeight;
+                            worksList.style.scrollBehavior = "smooth";
+                        }, 50);
+                    }
+                }
             };
+
+            // Intercept all hash-based navigation triggers globally to employ HTML5 history pushes
+            document.addEventListener("click", (e) => {
+                const navLink = e.target.closest("a");
+                if (!navLink) return;
+
+                const href = navLink.getAttribute("href");
+                if (href && href.startsWith("#")) {
+                    const viewId = href.replace("#", "");
+                    if (viewIndices[viewId] !== undefined) {
+                        e.preventDefault();
+                        const nextPath = viewId === "home" ? "/" : "/" + viewId;
+                        history.pushState(null, null, nextPath);
+                        handleRoute(viewId);
+                    }
+                }
+            });
+
+            // Listen to browser forward/back navigate gestures
+            window.addEventListener("popstate", () => {
+                const currentRoute = getRouteFromUrl();
+                handleRoute(currentRoute);
+            });
 
             // Discord click handler to copy username
             const discordBtn = document.getElementById("discord-btn");
@@ -1176,7 +1062,6 @@
 
             // Click sound player
             const playClickSound = () => {
-                // Initialize context on first user click
                 if (!audioCtx) {
                     initClickSound();
                 } else if (audioCtx.state === "suspended") {
@@ -1200,7 +1085,6 @@
                     }
                 }
 
-                // Fallback to standard DOM audio element
                 const clickSound = document.getElementById("click-sound");
                 if (clickSound) {
                     clickSound.currentTime = 0;
@@ -1211,10 +1095,8 @@
                 }
             };
 
-            // Preload click buffer on page load
             initClickSound();
 
-            // Bind click sound to all user-facing option clicks and navigations
             window.addEventListener("click", (e) => {
                 const trigger = e.target.closest("a, button, .project-marquee-card, .work-cover-link, .about-row, .social-item");
                 if (trigger) {
@@ -1222,21 +1104,19 @@
                 }
             });
 
-            // Global helper to synchronize original works slides with their infinite loop clones
+            // Sync original slides with dummy clones
             const syncProjectClonesState = () => {
-                const worksContainer = document.getElementById("snap-container");
-                if (!worksContainer) return;
-                const layouts = worksContainer.querySelectorAll(".works-split-layout");
+                const worksList = document.getElementById("works-list");
+                if (!worksList) return;
+                const layouts = worksList.querySelectorAll(".works-split-layout");
                 if (layouts.length < 5) return;
-                
-                // index 0 (clone of Project 3) matches index 3 (original Project 3)
+
                 if (layouts[3].classList.contains("collapsed-view")) {
                     layouts[0].classList.add("collapsed-view");
                 } else {
                     layouts[0].classList.remove("collapsed-view");
                 }
-                
-                // index 4 (clone of Project 1) matches index 1 (original Project 1)
+
                 if (layouts[1].classList.contains("collapsed-view")) {
                     layouts[4].classList.add("collapsed-view");
                 } else {
@@ -1244,53 +1124,76 @@
                 }
             };
 
-            // Global helper to update scroll lock state on the snap container when project details are opened
-            const updateScrollLock = () => {
-                const worksContainer = document.getElementById("snap-container");
-                if (!worksContainer) return;
-                const hasOpenDetails = worksContainer.querySelector(".works-split-layout:not(.collapsed-view)");
-                if (hasOpenDetails) {
-                    worksContainer.classList.add("scroll-locked");
-                } else {
-                    worksContainer.classList.remove("scroll-locked");
-                }
-            };
-
             // Keyboard Escape shortcut to navigate home or collapse expanded projects
             document.addEventListener("keydown", (e) => {
                 if (e.key === "Escape" || e.keyCode === 27) {
-                    const currentHash = window.location.hash || "#home";
+                    const currentView = getRouteFromUrl();
                     
-                    // If we are on Works view and a project details layout is expanded, collapse it first!
-                    if (currentHash === "#works") {
-                        const worksContainer = document.getElementById("snap-container");
-                        if (worksContainer) {
-                            const expandedLayout = worksContainer.querySelector(".works-split-layout:not(.collapsed-view)");
+                    if (currentView === "works") {
+                        const worksList = document.getElementById("works-list");
+                        if (worksList) {
+                            const expandedLayout = worksList.querySelector(".works-split-layout:not(.collapsed-view)");
                             if (expandedLayout) {
                                 expandedLayout.classList.add("collapsed-view");
                                 syncProjectClonesState();
-                                updateScrollLock(); // Unlock horizontal scrolling!
                                 playClickSound();
-                                return; // Stop here! Don't navigate home.
+                                return;
                             }
                         }
                     }
                     
-                    // Default behavior: navigate home
-                    if (currentHash !== "#home") {
-                        window.location.hash = "#home";
+                    if (currentView !== "home") {
+                        history.pushState(null, null, "/");
+                        handleRoute("home");
                         playClickSound();
                     }
                 }
             });
 
-            // Toggle project expansion details inside Works snap horizontal slider
-            const registerProjectExpansionToggles = () => {
-                const worksContainer = document.getElementById("snap-container");
-                if (!worksContainer) return;
+            // Setup vertical infinite loop scrolling snapping mechanics
+            const initializeVerticalSnapLoop = () => {
+                const worksList = document.getElementById("works-list");
+                if (!worksList) return;
 
-                worksContainer.addEventListener("click", (e) => {
-                    // Click on cover card or click-to-expand overlay link
+                let isLooping = false;
+                worksList.addEventListener("scroll", () => {
+                    if (isLooping) return;
+                    const scrollTop = worksList.scrollTop;
+                    const clientH = worksList.clientHeight;
+
+                    // Auto collapse details on scroll to keep loop snaps clean
+                    const expandedLayout = worksList.querySelector(".works-split-layout:not(.collapsed-view)");
+                    if (expandedLayout) {
+                        expandedLayout.classList.add("collapsed-view");
+                        syncProjectClonesState();
+                    }
+
+                    if (scrollTop <= 5) {
+                        isLooping = true;
+                        worksList.style.scrollBehavior = "auto";
+                        worksList.scrollTop = clientH * 3;
+                        setTimeout(() => {
+                            worksList.style.scrollBehavior = "smooth";
+                            isLooping = false;
+                        }, 50);
+                    } else if (scrollTop >= (clientH * 4 - 5)) {
+                        isLooping = true;
+                        worksList.style.scrollBehavior = "auto";
+                        worksList.scrollTop = clientH * 1;
+                        setTimeout(() => {
+                            worksList.style.scrollBehavior = "smooth";
+                            isLooping = false;
+                        }, 50);
+                    }
+                });
+            };
+
+            // Toggle project expansion details inside Works vertical scrolling list
+            const registerProjectExpansionToggles = () => {
+                const worksList = document.getElementById("works-list");
+                if (!worksList) return;
+
+                worksList.addEventListener("click", (e) => {
                     const coverLink = e.target.closest(".work-cover-link");
                     if (coverLink) {
                         const layout = coverLink.closest(".works-split-layout");
@@ -1299,22 +1202,16 @@
                             e.stopPropagation();
 
                             // Collapse all other projects to keep focus clean
-                            worksContainer.querySelectorAll(".works-split-layout").forEach(l => {
+                            worksList.querySelectorAll(".works-split-layout").forEach(l => {
                                 l.classList.add("collapsed-view");
                             });
 
                             // Expand this project!
                             layout.classList.remove("collapsed-view");
-                            
-                            // Synchronize original slides with clones
                             syncProjectClonesState();
-                            
-                            // Lock horizontal scroll while details are open
-                            updateScrollLock();
                         }
                     }
 
-                    // Click on close button inside details
                     const closeBtn = e.target.closest(".details-close-btn");
                     if (closeBtn) {
                         e.preventDefault();
@@ -1322,25 +1219,17 @@
                         const layout = closeBtn.closest(".works-split-layout");
                         if (layout) {
                             layout.classList.add("collapsed-view");
-                            
-                            // Synchronize original slides with clones
                             syncProjectClonesState();
-                            
-                            // Unlock horizontal scroll
-                            updateScrollLock();
                         }
                     }
                 });
             };
 
+            initializeVerticalSnapLoop();
             registerProjectExpansionToggles();
 
-            window.addEventListener("hashchange", () => {
-                handleRoute(window.location.hash);
-            });
-
             // Run initial routing check
-            handleRoute(window.location.hash);
+            handleRoute(currentViewId);
 
         });
     </script>
