@@ -8,7 +8,8 @@
     <meta name="description" content="Afsar D — Professional Developer Portfolio. Explore software engineering projects, experience, technical skills, and certifications. Vibe Coder, Python and React Dev." />
     <meta name="keywords" content="Afsar D, Afsar-D, portfolio, python developer, react developer, vibe coder, software engineer, web developer, thelab" />
     <meta name="author" content="Afsar D" />
-    
+    <link rel="preload" as="image" href="./PortfolioBlackCover.png" />
+    <link rel="preload" as="image" href="./PortfolioWhiteCover.png" />
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://workspacelab.vercel.app/" />
@@ -120,29 +121,37 @@
 
                 <!-- DUMMY SECTION: Project 3 (For Infinite Loop) -->
                 <section class="works-snap-section dummy-loop-section">
-                    <div class="works-split-layout">
+                    <div class="works-split-layout collapsed-view">
                         <div class="work-info-col">
-                            <span class="work-snap-num">03</span>
-                            <h2 class="work-snap-title">expense tracker</h2>
-                            <p class="work-snap-desc">An expense tracking app for recording transactions, organizing spending, and reviewing money flow with a clean and simple interface.</p>
-                            <div class="work-snap-tags">
-                                <span class="tag">React</span>
-                                <span class="tag">JavaScript</span>
-                                <span class="tag">CSS</span>
-                            </div>
-                            <div class="work-snap-actions">
-                                <a href="https://github.com/Afsar-D/expense-tracker" target="_blank" rel="noopener noreferrer" class="work-action-btn hover-grow-trigger">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                                    <span>code</span>
-                                </a>
+                            <button type="button" class="details-close-btn hover-grow-trigger" aria-label="Close details">
+                                <svg class="close-arrow-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                                <span>close details</span>
+                            </button>
+                            <div class="work-info-content">
+                                <span class="work-snap-num">03</span>
+                                <h2 class="work-snap-title">Latte Theory</h2>
+                                <p class="work-snap-desc">An interactive educational guide exploring coffee science, espresso extraction metrics, milk steaming physics, and latte art patterns.</p>
+                                <div class="work-snap-tags">
+                                    <span class="tag">React</span>
+                                    <span class="tag">JavaScript</span>
+                                    <span class="tag">CSS</span>
+                                </div>
+                                <div class="work-snap-actions">
+                                    <a href="https://github.com/Afsar-D/Latte-Theory" target="_blank" rel="noopener noreferrer" class="work-action-btn hover-grow-trigger">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                        <span>code</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <div class="work-cover-col">
-                            <a href="https://afsar-d.github.io/expense-tracker" target="_blank" rel="noopener noreferrer" class="work-cover-link hover-grow-trigger">
-                                <div class="work-cover-card null-cover hover-glow-card">
-                                    <span class="null-cover-num">03</span>
-                                    <span class="null-cover-label">expense tracker</span>
+                            <a href="https://afsar-d.github.io/Latte-Theory/" target="_blank" rel="noopener noreferrer" class="work-cover-link hover-grow-trigger">
+                                <div class="work-cover-card hover-glow-card image-cover" style="background-image: url('./LatteCover.png');">
+                                    <div class="cover-overlay-indicator">
+                                        <span>click for details</span>
+                                    </div>
                                 </div>
+                                <h3 class="collapsed-project-title">Latte Theory</h3>
                             </a>
                         </div>
                     </div>
@@ -150,30 +159,37 @@
 
                 <!-- Project 1 Section -->
                 <section class="works-snap-section">
-                    <div class="works-split-layout">
+                    <div class="works-split-layout collapsed-view">
                         <div class="work-info-col">
-                            <span class="work-snap-num">01</span>
-                            <h2 class="work-snap-title">portfolio website</h2>
-                            <p class="work-snap-desc">A responsive personal portfolio built with React and Vite, focused on smooth interactions, dynamic physics-based particles, and custom typography navigation.</p>
-                            <div class="work-snap-tags">
-                                <span class="tag">React</span>
-                                <span class="tag">Vite</span>
-                                <span class="tag">CSS</span>
-                            </div>
-                            <div class="work-snap-actions">
-                                <a href="https://github.com/Afsar-D/thelab" target="_blank" rel="noopener noreferrer" class="work-action-btn hover-grow-trigger">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                                    <span>code</span>
-                                </a>
+                            <button type="button" class="details-close-btn hover-grow-trigger" aria-label="Close details">
+                                <svg class="close-arrow-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                                <span>close details</span>
+                            </button>
+                            <div class="work-info-content">
+                                <span class="work-snap-num">01</span>
+                                <h2 class="work-snap-title">portfolio website</h2>
+                                <p class="work-snap-desc">A responsive personal portfolio built with React and Vite, focused on smooth interactions, dynamic physics-based particles, and custom typography navigation.</p>
+                                <div class="work-snap-tags">
+                                    <span class="tag">React</span>
+                                    <span class="tag">Vite</span>
+                                    <span class="tag">CSS</span>
+                                </div>
+                                <div class="work-snap-actions">
+                                    <a href="https://github.com/Afsar-D/thelab" target="_blank" rel="noopener noreferrer" class="work-action-btn hover-grow-trigger">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                        <span>code</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <div class="work-cover-col">
                             <a href="https://workspacelab.vercel.app/" target="_blank" rel="noopener noreferrer" class="work-cover-link hover-grow-trigger">
-                                <div class="work-cover-card hover-glow-card image-cover" style="background-image: url('./PortfolioCover.png');">
+                                <div class="work-cover-card hover-glow-card image-cover portfolio-cover-card">
                                     <div class="cover-overlay-indicator">
-                                        <span>visit site</span>
+                                        <span>click for details</span>
                                     </div>
                                 </div>
+                                <h3 class="collapsed-project-title">portfolio website</h3>
                             </a>
                         </div>
                     </div>
@@ -181,31 +197,38 @@
 
                 <!-- Project 2 Section -->
                 <section class="works-snap-section">
-                    <div class="works-split-layout">
+                    <div class="works-split-layout collapsed-view">
                         <div class="work-info-col">
-                            <span class="work-snap-num">02</span>
-                            <h2 class="work-snap-title">liquids library</h2>
-                            <p class="work-snap-desc">A modern library-style web app deployed on Vercel with Supabase PostgreSQL for data storage, delivering responsive browsing and reliable backend support.</p>
-                            <div class="work-snap-tags">
-                                <span class="tag">React</span>
-                                <span class="tag">Vite</span>
-                                <span class="tag">Supabase</span>
-                                <span class="tag">PostgreSQL</span>
-                            </div>
-                            <div class="work-snap-actions">
-                                <a href="https://github.com/Afsar-D/drinks-stall" target="_blank" rel="noopener noreferrer" class="work-action-btn hover-grow-trigger">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                                    <span>code</span>
-                                </a>
+                            <button type="button" class="details-close-btn hover-grow-trigger" aria-label="Close details">
+                                <svg class="close-arrow-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                                <span>close details</span>
+                            </button>
+                            <div class="work-info-content">
+                                <span class="work-snap-num">02</span>
+                                <h2 class="work-snap-title">liquids library</h2>
+                                <p class="work-snap-desc">A modern library-style web app deployed on Vercel with Supabase PostgreSQL for data storage, delivering responsive browsing and reliable backend support.</p>
+                                <div class="work-snap-tags">
+                                    <span class="tag">React</span>
+                                    <span class="tag">Vite</span>
+                                    <span class="tag">Supabase</span>
+                                    <span class="tag">PostgreSQL</span>
+                                </div>
+                                <div class="work-snap-actions">
+                                    <a href="https://github.com/Afsar-D/drinks-stall" target="_blank" rel="noopener noreferrer" class="work-action-btn hover-grow-trigger">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                        <span>code</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <div class="work-cover-col">
                             <a href="https://liquids-library.vercel.app/" target="_blank" rel="noopener noreferrer" class="work-cover-link hover-grow-trigger">
                                 <div class="work-cover-card hover-glow-card image-cover" style="background-image: url('./LiquidCover.png');">
                                     <div class="cover-overlay-indicator">
-                                        <span>visit site</span>
+                                        <span>click for details</span>
                                     </div>
                                 </div>
+                                <h3 class="collapsed-project-title">liquids library</h3>
                             </a>
                         </div>
                     </div>
@@ -213,29 +236,37 @@
 
                 <!-- Project 3 Section -->
                 <section class="works-snap-section">
-                    <div class="works-split-layout">
+                    <div class="works-split-layout collapsed-view">
                         <div class="work-info-col">
-                            <span class="work-snap-num">03</span>
-                            <h2 class="work-snap-title">expense tracker</h2>
-                            <p class="work-snap-desc">An expense tracking app for recording transactions, organizing spending, and reviewing money flow with a clean and simple interface.</p>
-                            <div class="work-snap-tags">
-                                <span class="tag">React</span>
-                                <span class="tag">JavaScript</span>
-                                <span class="tag">CSS</span>
-                            </div>
-                            <div class="work-snap-actions">
-                                <a href="https://github.com/Afsar-D/expense-tracker" target="_blank" rel="noopener noreferrer" class="work-action-btn hover-grow-trigger">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                                    <span>code</span>
-                                </a>
+                            <button type="button" class="details-close-btn hover-grow-trigger" aria-label="Close details">
+                                <svg class="close-arrow-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                                <span>close details</span>
+                            </button>
+                            <div class="work-info-content">
+                                <span class="work-snap-num">03</span>
+                                <h2 class="work-snap-title">Latte Theory</h2>
+                                <p class="work-snap-desc">An interactive educational guide exploring coffee science, espresso extraction metrics, milk steaming physics, and latte art patterns.</p>
+                                <div class="work-snap-tags">
+                                    <span class="tag">React</span>
+                                    <span class="tag">JavaScript</span>
+                                    <span class="tag">CSS</span>
+                                </div>
+                                <div class="work-snap-actions">
+                                    <a href="https://github.com/Afsar-D/Latte-Theory" target="_blank" rel="noopener noreferrer" class="work-action-btn hover-grow-trigger">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                        <span>code</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <div class="work-cover-col">
-                            <a href="https://afsar-d.github.io/expense-tracker" target="_blank" rel="noopener noreferrer" class="work-cover-link hover-grow-trigger">
-                                <div class="work-cover-card null-cover hover-glow-card">
-                                    <span class="null-cover-num">03</span>
-                                    <span class="null-cover-label">expense tracker</span>
+                            <a href="https://afsar-d.github.io/Latte-Theory/" target="_blank" rel="noopener noreferrer" class="work-cover-link hover-grow-trigger">
+                                <div class="work-cover-card hover-glow-card image-cover" style="background-image: url('./LatteCover.png');">
+                                    <div class="cover-overlay-indicator">
+                                        <span>click for details</span>
+                                    </div>
                                 </div>
+                                <h3 class="collapsed-project-title">Latte Theory</h3>
                             </a>
                         </div>
                     </div>
@@ -243,30 +274,37 @@
 
                 <!-- DUMMY SECTION: Project 1 (For Infinite Loop) -->
                 <section class="works-snap-section dummy-loop-section">
-                    <div class="works-split-layout">
+                    <div class="works-split-layout collapsed-view">
                         <div class="work-info-col">
-                            <span class="work-snap-num">01</span>
-                            <h2 class="work-snap-title">portfolio website</h2>
-                            <p class="work-snap-desc">A responsive personal portfolio built with React and Vite, focused on smooth interactions, dynamic physics-based particles, and custom typography navigation.</p>
-                            <div class="work-snap-tags">
-                                <span class="tag">React</span>
-                                <span class="tag">Vite</span>
-                                <span class="tag">CSS</span>
-                            </div>
-                            <div class="work-snap-actions">
-                                <a href="https://github.com/Afsar-D/thelab" target="_blank" rel="noopener noreferrer" class="work-action-btn hover-grow-trigger">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                                    <span>code</span>
-                                </a>
+                            <button type="button" class="details-close-btn hover-grow-trigger" aria-label="Close details">
+                                <svg class="close-arrow-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                                <span>close details</span>
+                            </button>
+                            <div class="work-info-content">
+                                <span class="work-snap-num">01</span>
+                                <h2 class="work-snap-title">portfolio website</h2>
+                                <p class="work-snap-desc">A responsive personal portfolio built with React and Vite, focused on smooth interactions, dynamic physics-based particles, and custom typography navigation.</p>
+                                <div class="work-snap-tags">
+                                    <span class="tag">React</span>
+                                    <span class="tag">Vite</span>
+                                    <span class="tag">CSS</span>
+                                </div>
+                                <div class="work-snap-actions">
+                                    <a href="https://github.com/Afsar-D/thelab" target="_blank" rel="noopener noreferrer" class="work-action-btn hover-grow-trigger">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                        <span>code</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <div class="work-cover-col">
                             <a href="https://workspacelab.vercel.app/" target="_blank" rel="noopener noreferrer" class="work-cover-link hover-grow-trigger">
-                                <div class="work-cover-card hover-glow-card image-cover" style="background-image: url('./PortfolioCover.png');">
+                                <div class="work-cover-card hover-glow-card image-cover portfolio-cover-card">
                                     <div class="cover-overlay-indicator">
-                                        <span>visit site</span>
+                                        <span>click for details</span>
                                     </div>
                                 </div>
+                                <h3 class="collapsed-project-title">portfolio website</h3>
                             </a>
                         </div>
                     </div>
@@ -736,38 +774,51 @@
             const snapContainer = document.getElementById("snap-container");
             let isLooping = false;
 
+            const getCenterScrollLeft = (index) => {
+                const sections = snapContainer.querySelectorAll(".works-snap-section");
+                const sec = sections[index];
+                if (!sec) return 0;
+                
+                const scrollerWidth = snapContainer.clientWidth || window.innerWidth;
+                const isMobile = window.innerWidth <= 800;
+                const secWidth = sec.clientWidth || (scrollerWidth * (isMobile ? 0.85 : 0.8));
+                const secOffset = sec.offsetLeft || (index * secWidth);
+                
+                return secOffset - (scrollerWidth - secWidth) / 2;
+            };
+
+            let isWheelScrolling = false;
+            let currentProjectIndex = 1;
+
             const initializeWorksSlider = () => {
+                currentProjectIndex = 1;
                 setTimeout(() => {
                     const sections = snapContainer.querySelectorAll(".works-snap-section");
                     if (sections.length >= 5) {
                         snapContainer.style.scrollBehavior = "auto";
-                        snapContainer.scrollTop = sections[1].offsetTop;
+                        snapContainer.scrollLeft = getCenterScrollLeft(1);
                         snapContainer.style.scrollBehavior = "";
                     }
                 }, 100);
             };
 
             const animateWorksScroll = (scroller) => {
-                const scrollerCenter = scroller.scrollTop + scroller.clientHeight / 2;
+                if (CSS.supports && CSS.supports("animation-timeline", "view()")) {
+                    return; // Skip JS updates on browsers supporting hardware-accelerated CSS scroll animations!
+                }
+                const scrollerCenter = scroller.scrollLeft + scroller.clientWidth / 2;
                 const sections = snapContainer.querySelectorAll(".works-snap-section");
-                const isMobile = window.innerWidth <= 800;
 
                 sections.forEach(sec => {
-                    if (isMobile && sec.classList.contains("dummy-loop-section")) {
-                        sec.style.opacity = "0";
-                        return;
-                    }
-
-                    const secCenter = sec.offsetTop + sec.clientHeight / 2;
+                    const secCenter = sec.offsetLeft + sec.clientWidth / 2;
                     const distanceFromCenter = Math.abs(scrollerCenter - secCenter);
-                    const maxDistance = scroller.clientHeight || 1;
+                    const maxDistance = scroller.clientWidth || 1;
 
                     let ratio = distanceFromCenter / maxDistance;
                     if (ratio > 1) ratio = 1;
 
-                    const scale = 1 - (ratio * 0.08);
-                    const opacity = 1 - (ratio * 0.6);
-                    const translateY = ratio * 20;
+                    const scale = 1 - (ratio * 0.18);
+                    const opacity = 1 - (ratio * 0.7);
 
                     const card = sec.querySelector(".work-cover-card");
                     const info = sec.querySelector(".work-info-col");
@@ -779,43 +830,81 @@
                     }
                     if (info) {
                         info.style.opacity = opacity;
-                        info.style.transform = `translateY(${translateY}px)`;
-                        info.style.transition = "opacity 0.1s ease-out, transform 0.1s ease-out";
+                        info.style.transition = "opacity 0.1s ease-out";
                     }
                 });
             };
 
+            let scrollEndTimeout = null;
             snapContainer.addEventListener("scroll", () => {
+                // Perform real-time parallax scaling/fading updates
+                animateWorksScroll(snapContainer);
+
                 if (isLooping) return;
 
-                const scrollTop = snapContainer.scrollTop;
                 const sections = snapContainer.querySelectorAll(".works-snap-section");
                 if (sections.length < 5) return;
 
-                const t0 = 10;
-                const t4 = sections[4].offsetTop - 10;
+                // Debounce loop snaps to prevent scroll momentum collision cuts
+                clearTimeout(scrollEndTimeout);
+                scrollEndTimeout = setTimeout(() => {
+                    const scrollLeft = snapContainer.scrollLeft;
+                    const t0 = getCenterScrollLeft(0) + 15;
+                    const t4 = getCenterScrollLeft(4) - 15;
 
-                if (scrollTop <= t0) {
-                    isLooping = true;
-                    snapContainer.style.scrollBehavior = "auto";
-                    snapContainer.scrollTop = sections[3].offsetTop;
-                    snapContainer.style.scrollBehavior = "";
-                    setTimeout(() => { isLooping = false; }, 80);
-                } 
-                else if (scrollTop >= t4) {
-                    isLooping = true;
-                    snapContainer.style.scrollBehavior = "auto";
-                    snapContainer.scrollTop = sections[1].offsetTop;
-                    snapContainer.style.scrollBehavior = "";
-                    setTimeout(() => { isLooping = false; }, 80);
+                    if (scrollLeft <= t0) {
+                        isLooping = true;
+                        snapContainer.style.scrollBehavior = "auto";
+                        snapContainer.scrollLeft = getCenterScrollLeft(3);
+                        snapContainer.style.scrollBehavior = "";
+                        currentProjectIndex = 3;
+                        setTimeout(() => { isLooping = false; }, 60);
+                    } 
+                    else if (scrollLeft >= t4) {
+                        isLooping = true;
+                        snapContainer.style.scrollBehavior = "auto";
+                        snapContainer.scrollLeft = getCenterScrollLeft(1);
+                        snapContainer.style.scrollBehavior = "";
+                        currentProjectIndex = 1;
+                        setTimeout(() => { isLooping = false; }, 60);
+                    }
+                }, 65);
+            });
+
+            // Translate vertical scroll wheel movements to horizontal page transitions
+            snapContainer.addEventListener("wheel", (e) => {
+                if (e.deltaY !== 0 && e.deltaX === 0) {
+                    e.preventDefault();
+                    
+                    if (snapContainer.classList.contains("scroll-locked") || isWheelScrolling || isLooping) return;
+                    
+                    const sections = snapContainer.querySelectorAll(".works-snap-section");
+                    if (sections.length < 5) return;
+                    
+                    isWheelScrolling = true;
+                    
+                    // Determine slide direction
+                    if (e.deltaY > 0) {
+                        currentProjectIndex++;
+                    } else {
+                        currentProjectIndex--;
+                    }
+                    
+                    // Keep index within logical bounds
+                    if (currentProjectIndex < 0) currentProjectIndex = 0;
+                    if (currentProjectIndex >= sections.length) currentProjectIndex = sections.length - 1;
+                    
+                    // Smoothly scroll to the target project center
+                    snapContainer.style.scrollBehavior = "smooth";
+                    snapContainer.scrollLeft = getCenterScrollLeft(currentProjectIndex);
+                    
+                    // Release animation lock after transition completes (de-clutters scroll event resets)
+                    setTimeout(() => {
+                        snapContainer.style.scrollBehavior = "";
+                        isWheelScrolling = false;
+                    }, 500);
                 }
-
-                animateWorksScroll(snapContainer);
-            });
-
-            document.getElementById("works-view").addEventListener("scroll", () => {
-                animateWorksScroll(document.getElementById("works-view"));
-            });
+            }, { passive: false });
 
             // About Page Scroll Driven Parallax
             const aboutView = document.getElementById("about-view");
@@ -959,8 +1048,7 @@
                 if (viewId === "works") {
                     initializeWorksSlider();
                     setTimeout(() => {
-                        const isMobile = window.innerWidth <= 800;
-                        animateWorksScroll(isMobile ? document.getElementById("works-view") : snapContainer);
+                        animateWorksScroll(snapContainer);
                     }, 120);
                 }
 
@@ -1053,16 +1141,118 @@
                 }
             });
 
-            // Keyboard Escape shortcut to navigate home from subpages
+            // Global helper to synchronize original works slides with their infinite loop clones
+            const syncProjectClonesState = () => {
+                const worksContainer = document.getElementById("snap-container");
+                if (!worksContainer) return;
+                const layouts = worksContainer.querySelectorAll(".works-split-layout");
+                if (layouts.length < 5) return;
+                
+                // index 0 (clone of Project 3) matches index 3 (original Project 3)
+                if (layouts[3].classList.contains("collapsed-view")) {
+                    layouts[0].classList.add("collapsed-view");
+                } else {
+                    layouts[0].classList.remove("collapsed-view");
+                }
+                
+                // index 4 (clone of Project 1) matches index 1 (original Project 1)
+                if (layouts[1].classList.contains("collapsed-view")) {
+                    layouts[4].classList.add("collapsed-view");
+                } else {
+                    layouts[4].classList.remove("collapsed-view");
+                }
+            };
+
+            // Global helper to update scroll lock state on the snap container when project details are opened
+            const updateScrollLock = () => {
+                const worksContainer = document.getElementById("snap-container");
+                if (!worksContainer) return;
+                const hasOpenDetails = worksContainer.querySelector(".works-split-layout:not(.collapsed-view)");
+                if (hasOpenDetails) {
+                    worksContainer.classList.add("scroll-locked");
+                } else {
+                    worksContainer.classList.remove("scroll-locked");
+                }
+            };
+
+            // Keyboard Escape shortcut to navigate home or collapse expanded projects
             document.addEventListener("keydown", (e) => {
                 if (e.key === "Escape" || e.keyCode === 27) {
                     const currentHash = window.location.hash || "#home";
+                    
+                    // If we are on Works view and a project details layout is expanded, collapse it first!
+                    if (currentHash === "#works") {
+                        const worksContainer = document.getElementById("snap-container");
+                        if (worksContainer) {
+                            const expandedLayout = worksContainer.querySelector(".works-split-layout:not(.collapsed-view)");
+                            if (expandedLayout) {
+                                expandedLayout.classList.add("collapsed-view");
+                                syncProjectClonesState();
+                                updateScrollLock(); // Unlock horizontal scrolling!
+                                playClickSound();
+                                return; // Stop here! Don't navigate home.
+                            }
+                        }
+                    }
+                    
+                    // Default behavior: navigate home
                     if (currentHash !== "#home") {
                         window.location.hash = "#home";
                         playClickSound();
                     }
                 }
             });
+
+            // Toggle project expansion details inside Works snap horizontal slider
+            const registerProjectExpansionToggles = () => {
+                const worksContainer = document.getElementById("snap-container");
+                if (!worksContainer) return;
+
+                worksContainer.addEventListener("click", (e) => {
+                    // Click on cover card or click-to-expand overlay link
+                    const coverLink = e.target.closest(".work-cover-link");
+                    if (coverLink) {
+                        const layout = coverLink.closest(".works-split-layout");
+                        if (layout && layout.classList.contains("collapsed-view")) {
+                            e.preventDefault();
+                            e.stopPropagation();
+
+                            // Collapse all other projects to keep focus clean
+                            worksContainer.querySelectorAll(".works-split-layout").forEach(l => {
+                                l.classList.add("collapsed-view");
+                            });
+
+                            // Expand this project!
+                            layout.classList.remove("collapsed-view");
+                            
+                            // Synchronize original slides with clones
+                            syncProjectClonesState();
+                            
+                            // Lock horizontal scroll while details are open
+                            updateScrollLock();
+                        }
+                    }
+
+                    // Click on close button inside details
+                    const closeBtn = e.target.closest(".details-close-btn");
+                    if (closeBtn) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const layout = closeBtn.closest(".works-split-layout");
+                        if (layout) {
+                            layout.classList.add("collapsed-view");
+                            
+                            // Synchronize original slides with clones
+                            syncProjectClonesState();
+                            
+                            // Unlock horizontal scroll
+                            updateScrollLock();
+                        }
+                    }
+                });
+            };
+
+            registerProjectExpansionToggles();
 
             window.addEventListener("hashchange", () => {
                 handleRoute(window.location.hash);

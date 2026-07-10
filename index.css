@@ -70,6 +70,9 @@
     /* Theme switches positioning */
     --theme-dot-transform: translateX(0);
     --theme-dot-bg: #ececec;
+
+    /* Cover page default theme image (dark mode pop) */
+    --portfolio-cover: url('./PortfolioWhiteCover.png');
 }
 
 html[data-theme="light"] {
@@ -87,6 +90,9 @@ html[data-theme="light"] {
     
     --theme-dot-transform: translateX(16px);
     --theme-dot-bg: #121212;
+
+    /* Cover page light theme image (light mode pop) */
+    --portfolio-cover: url('./PortfolioBlackCover.png');
 }
 
 * {
@@ -670,13 +676,25 @@ body {
     box-shadow: 0 12px 30px var(--card-shadow);
 }
 
-/* 8. Split Works Scroll Snap presentation layout */
+/* 8. Split Works Scroll Snap presentation layout (Horizontal) */
 .works-snap-container {
-    height: 100vh;
-    width: 100vw;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
+    height: 100%;
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: row;
+    scroll-snap-type: x mandatory !important;
     scrollbar-width: none;
+    padding: 0 10vw;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+}
+
+.works-snap-container.scroll-locked {
+    overflow-x: hidden !important;
+    scroll-snap-type: none !important;
+    touch-action: none !important;
 }
 
 .works-snap-container::-webkit-scrollbar {
@@ -684,9 +702,10 @@ body {
 }
 
 .works-snap-section {
-    height: 100vh;
-    width: 100vw;
-    scroll-snap-align: start;
+    flex: 0 0 80vw;
+    width: 80vw;
+    height: 100%;
+    scroll-snap-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -695,20 +714,164 @@ body {
     position: relative;
 }
 
+/* CSS Scroll-Driven animations for hardware-accelerated zero-lag snaps (Codepen style) */
+@supports (animation-timeline: view()) {
+    .works-snap-section {
+        view-timeline-name: --section-reveal;
+        view-timeline-axis: inline;
+    }
+
+    .work-cover-card {
+        animation: works-image-reveal linear both;
+        animation-timeline: --section-reveal;
+    }
+    
+    .work-info-col {
+        animation: works-text-reveal linear both;
+        animation-timeline: --section-reveal;
+    }
+    
+    @keyframes works-image-reveal {
+        0% {
+            opacity: 0.3;
+            transform: scale(0.82);
+            filter: blur(8px);
+        }
+        50% {
+            opacity: 1;
+            transform: scale(1);
+            filter: blur(0);
+        }
+        100% {
+            opacity: 0.3;
+            transform: scale(0.82);
+            filter: blur(8px);
+        }
+    }
+    
+    @keyframes works-text-reveal {
+        0% {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        50% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        100% {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+    }
+}
+
 .works-split-layout {
-    display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
+    gap: 80px;
     width: 100%;
     max-width: 1100px;
     margin: 0 auto;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
 }
 
 .work-info-col {
+    flex: 1 1 45%;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), max-width 0.5s cubic-bezier(0.16, 1, 0.3, 1), flex-basis 0.5s cubic-bezier(0.16, 1, 0.3, 1), margin-right 0.5s;
+    position: relative;
+}
+
+/* Collapsed state rules for split columns */
+.works-split-layout.collapsed-view .work-info-col {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: translateX(-40px) !important;
+    max-width: 0 !important;
+    flex-basis: 0% !important;
+    margin-right: -80px !important; /* negates gap layout */
+    overflow: hidden !important;
+}
+
+.works-split-layout.collapsed-view .work-cover-col {
+    flex-basis: 100% !important;
+}
+
+.work-cover-col {
+    flex: 1 1 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: flex-basis 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.details-close-btn {
+    position: absolute;
+    top: -24px;
+    left: 0;
+    right: auto;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+    padding: 4px 0;
+    background-color: transparent;
+    z-index: 10;
+}
+
+.details-close-btn .close-arrow-icon {
+    transition: transform var(--transition-fast);
+}
+
+.details-close-btn:hover {
+    color: var(--accent);
+    background-color: transparent;
+}
+
+.details-close-btn:hover .close-arrow-icon {
+    transform: translateX(-4px);
+}
+
+.work-info-content {
+    width: 440px; /* Locked width to prevent text wrap reflows during transitions! */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.collapsed-project-title {
+    font-family: "Safiro Medium", sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: center;
+    margin-top: 20px;
+    text-transform: lowercase;
+    opacity: 1;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.works-split-layout:not(.collapsed-view) .collapsed-project-title {
+    opacity: 0 !important;
+    transform: translateY(10px) !important;
+    pointer-events: none !important;
 }
 
 .work-snap-num {
@@ -751,18 +914,12 @@ body {
     gap: 16px;
 }
 
-.work-cover-col {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
 .work-cover-link {
     display: block;
     width: 100%;
     max-width: 440px;
     text-decoration: none;
+    position: relative;
 }
 
 .work-cover-card {
@@ -789,6 +946,10 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.portfolio-cover-card {
+    background-image: var(--portfolio-cover) !important;
 }
 
 .cover-overlay-indicator {
@@ -1281,32 +1442,95 @@ body.menu-lock {
     }
     
     #works-view {
-        overflow-y: auto !important;
-    }
-    
-    .dummy-loop-section {
-        display: none !important;
-    }
-    
-    .works-snap-container {
-        height: auto;
-        overflow-y: visible;
-        scroll-snap-type: none;
+        overflow: hidden !important;
     }
 
+    .works-snap-container {
+        padding: 0 7.5vw !important;
+    }
+    
     .works-snap-section {
-        height: auto;
-        scroll-snap-align: none;
-        padding: 80px 24px 100px;
+        flex: 0 0 85vw !important;
+        width: 85vw !important;
+        scroll-snap-align: center !important;
+        padding: 20px 12px !important;
+        box-sizing: border-box;
     }
 
     .works-split-layout {
-        grid-template-columns: 1fr;
-        gap: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px !important;
+        height: 100%;
+        width: 100%;
         text-align: center;
+        padding: 24px;
+        box-sizing: border-box;
+        transition: all 0.5s ease-in-out;
     }
     
     .work-info-col {
+        align-items: center;
+        flex: 0 0 auto;
+        max-width: 100%;
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out, max-height 0.4s ease-in-out;
+        max-height: 380px;
+        margin-right: 0 !important;
+    }
+    
+    /* Collapsed view states on mobile (moves card to center, hides details vertically) */
+    .works-split-layout.collapsed-view .work-info-col {
+        opacity: 0 !important;
+        pointer-events: none !important;
+        transform: translateY(20px) !important;
+        max-height: 0 !important;
+        overflow: hidden !important;
+        margin-bottom: 0 !important;
+    }
+    
+    .work-cover-col {
+        flex: 0 0 auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .work-cover-link {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+        text-decoration: none;
+    }
+    
+    .works-split-layout.collapsed-view .work-cover-col {
+        transform: translateY(0) scale(1.02);
+    }
+    
+    .works-split-layout:not(.collapsed-view) .work-cover-col {
+        transform: translateY(-10px) scale(0.95);
+    }
+    
+    .details-close-btn {
+        position: relative !important;
+        top: 0 !important;
+        left: auto !important;
+        right: auto !important;
+        margin-bottom: 12px;
+        align-self: center;
+    }
+
+    .work-info-content {
+        width: 100% !important;
+        max-width: 380px;
+        display: flex;
+        flex-direction: column;
         align-items: center;
     }
     
@@ -1315,7 +1539,30 @@ body.menu-lock {
     }
 
     .work-cover-card {
-        height: 320px !important;
+        height: 180px !important;
+        width: 100%;
+        max-width: 260px;
+    }
+
+    .work-snap-num {
+        font-size: 1.6rem !important;
+        margin-bottom: 4px !important;
+    }
+
+    .work-snap-title {
+        font-size: 1.5rem !important;
+        margin-bottom: 8px !important;
+    }
+
+    .work-snap-desc {
+        font-size: 0.85rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 12px !important;
+    }
+
+    .work-snap-tags {
+        margin-bottom: 12px !important;
+        gap: 6px !important;
     }
 }
 
@@ -1376,8 +1623,23 @@ body.menu-lock {
         font-size: 15px;
     }
 
+    .works-split-layout {
+        gap: 12px;
+        padding: 16px;
+    }
+
     .work-cover-card {
-        height: 240px !important;
+        height: 180px !important;
+    }
+    
+    .work-snap-title {
+        font-size: 1.4rem !important;
+    }
+    
+    .work-snap-desc {
+        font-size: 12px !important;
+        line-height: 1.4 !important;
+        margin-bottom: 8px !important;
     }
     
     /* Navigation bar icon-only mobile layout */
