@@ -27,7 +27,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./index.css?v=1.2" />
 </head>
 <body class="spa-body">
 
@@ -953,20 +953,8 @@
                 const absY = Math.abs(deltaY);
                 const threshold = 40; // minimum distance in px to register a swipe
 
-                let shouldSwitch = false;
-                let directionForward = false;
-
-                if (absX > absY && absX > threshold) {
-                    // Horizontal swipe (Left / Right)
-                    shouldSwitch = true;
-                    directionForward = (deltaX > 0);
-                } else if (absY > absX && absY > threshold) {
-                    // Vertical swipe (Up / Down)
-                    shouldSwitch = true;
-                    directionForward = (deltaY > 0);
-                }
-
-                if (shouldSwitch) {
+                // Only intercept vertical swipes (up/down). Let horizontal swipes (left/right) scroll natively!
+                if (absY > absX && absY > threshold) {
                     e.preventDefault(); // Stop native overscroll bounce/tab reloads
 
                     const sections = snapContainer.querySelectorAll(".works-snap-section");
@@ -974,10 +962,10 @@
 
                     isWheelScrolling = true; // Lock triggers to prevent gesture spamming
 
-                    if (directionForward) {
-                        currentProjectIndex++;
+                    if (deltaY > 0) {
+                        currentProjectIndex++; // Swipe Up -> Next Project
                     } else {
-                        currentProjectIndex--;
+                        currentProjectIndex--; // Swipe Down -> Prev Project
                     }
 
                     if (currentProjectIndex < 0) currentProjectIndex = 0;
