@@ -923,6 +923,8 @@ body {
     max-width: 440px;
     text-decoration: none;
     position: relative;
+    overflow: hidden; /* Crops scaled cover cards */
+    border-radius: 20px; /* Clips card corners correctly */
 }
 
 .work-cover-card {
@@ -937,17 +939,18 @@ body {
     transition: var(--transition-smooth);
     cursor: pointer;
     will-change: transform, opacity; /* isolates zooms and reveals on GPU */
+    transform: scale(1.025); /* Default scale crops the borders */
 }
 
 .work-cover-card:hover {
-    transform: scale(1.03);
+    transform: scale(1.06); /* Scale up on hover */
     border-color: rgba(var(--accent-rgb), 0.25);
     box-shadow: 0 30px 60px rgba(0,0,0,0.8);
 }
 
 /* Image Cover Page styling */
 .image-cover {
-    background-size: 102.5% 102.5% !important; /* Scaled up by 2.5% to crop out thin dark screenshot border lines */
+    background-size: cover !important; /* Forces cover layout, preventing image stretching */
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -1481,12 +1484,13 @@ body.menu-lock {
         max-width: 100%;
         opacity: 1;
         transform: translateY(0);
-        transition: opacity 0.35s cubic-bezier(0.23, 1, 0.32, 1), transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+        transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         max-height: 380px;
         margin-right: 0 !important;
+        will-change: transform, opacity, max-height;
     }
     
-    /* Collapsed view states on mobile (moves card to center, hides details vertically via GPU transforms) */
+    /* Collapsed view states on mobile (moves card to center, hides details vertically) */
     .works-split-layout.collapsed-view .work-info-col {
         opacity: 0 !important;
         pointer-events: none !important;
@@ -1494,7 +1498,7 @@ body.menu-lock {
         max-height: 0 !important;
         overflow: hidden !important;
         margin-bottom: 0 !important;
-        transition: opacity 0.35s cubic-bezier(0.23, 1, 0.32, 1), transform 0.35s cubic-bezier(0.23, 1, 0.32, 1), max-height 0s linear 0.35s !important;
+        transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
     
     .work-cover-col {
@@ -1544,9 +1548,11 @@ body.menu-lock {
     }
 
     .work-cover-card {
-        height: 180px !important;
-        width: 100%;
-        max-width: 260px;
+        aspect-ratio: 1 / 1 !important;
+        width: 100% !important;
+        max-width: 240px !important;
+        height: auto !important;
+        transform: scale(1.025) !important; /* Crops borders on mobile */
     }
 
     .work-snap-num {

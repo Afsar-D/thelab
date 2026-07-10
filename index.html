@@ -892,7 +892,11 @@
 
             // Translate vertical scroll wheel movements to horizontal page transitions
             snapContainer.addEventListener("wheel", (e) => {
-                if (e.deltaY !== 0 && e.deltaX === 0) {
+                const absY = Math.abs(e.deltaY);
+                const absX = Math.abs(e.deltaX);
+                
+                // Switch project slides if vertical scroll is dominant
+                if (absY > 0 && absY > absX) {
                     e.preventDefault();
                     
                     if (snapContainer.classList.contains("scroll-locked") || isWheelScrolling || isLooping) return;
@@ -917,7 +921,72 @@
                     snapContainer.style.scrollBehavior = "smooth";
                     snapContainer.scrollLeft = getCenterScrollLeft(currentProjectIndex);
                     
-                    // Release animation lock after transition completes (de-clutters scroll event resets)
+                    // Release animation lock after transition completes
+                    setTimeout(() => {
+                        snapContainer.style.scrollBehavior = "";
+                        isWheelScrolling = false;
+                    }, 500);
+                }
+            }, { passive: false });
+
+            // Mobile touch swipe gestures (both vertical and horizontal swipes trigger slide switches)
+            let touchStartX = 0;
+            let touchStartY = 0;
+
+            snapContainer.addEventListener("touchstart", (e) => {
+                if (snapContainer.classList.contains("scroll-locked")) return;
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+            }, { passive: true });
+
+            snapContainer.addEventListener("touchend", (e) => {
+                if (snapContainer.classList.contains("scroll-locked")) return;
+                if (isWheelScrolling || isLooping) return;
+
+                const touchEndX = e.changedTouches[0].clientX;
+                const touchEndY = e.changedTouches[0].clientY;
+
+                const deltaX = touchStartX - touchEndX;
+                const deltaY = touchStartY - touchEndY;
+
+                const absX = Math.abs(deltaX);
+                const absY = Math.abs(deltaY);
+                const threshold = 40; // minimum distance in px to register a swipe
+
+                let shouldSwitch = false;
+                let directionForward = false;
+
+                if (absX > absY && absX > threshold) {
+                    // Horizontal swipe (Left / Right)
+                    shouldSwitch = true;
+                    directionForward = (deltaX > 0);
+                } else if (absY > absX && absY > threshold) {
+                    // Vertical swipe (Up / Down)
+                    shouldSwitch = true;
+                    directionForward = (deltaY > 0);
+                }
+
+                if (shouldSwitch) {
+                    e.preventDefault(); // Stop native overscroll bounce/tab reloads
+
+                    const sections = snapContainer.querySelectorAll(".works-snap-section");
+                    if (sections.length < 5) return;
+
+                    isWheelScrolling = true; // Lock triggers to prevent gesture spamming
+
+                    if (directionForward) {
+                        currentProjectIndex++;
+                    } else {
+                        currentProjectIndex--;
+                    }
+
+                    if (currentProjectIndex < 0) currentProjectIndex = 0;
+                    if (currentProjectIndex >= sections.length) currentProjectIndex = sections.length - 1;
+
+                    // Smoothly scroll to the target project center
+                    snapContainer.style.scrollBehavior = "smooth";
+                    snapContainer.scrollLeft = getCenterScrollLeft(currentProjectIndex);
+
                     setTimeout(() => {
                         snapContainer.style.scrollBehavior = "";
                         isWheelScrolling = false;
