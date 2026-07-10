@@ -989,6 +989,24 @@ body {
     box-shadow: 0 10px 20px rgba(var(--accent-rgb), 0.3);
 }
 
+.cover-overlay-indicator .indicator-expanded {
+    display: none !important;
+}
+.cover-overlay-indicator .indicator-collapsed {
+    display: inline-block !important;
+}
+
+/* When project details are expanded, swap indicator text to 'visit website' and keep overlay visible */
+.works-split-layout:not(.collapsed-view) .cover-overlay-indicator {
+    opacity: 1 !important;
+}
+.works-split-layout:not(.collapsed-view) .cover-overlay-indicator .indicator-collapsed {
+    display: none !important;
+}
+.works-split-layout:not(.collapsed-view) .cover-overlay-indicator .indicator-expanded {
+    display: inline-block !important;
+}
+
 /* Null Cover page styling (geometric placeholder) */
 .null-cover {
     display: flex;
@@ -1466,7 +1484,7 @@ body.menu-lock {
 
     .works-split-layout {
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse !important; /* Forces card on top, details below on mobile */
         justify-content: center;
         align-items: center;
         gap: 10px !important;
