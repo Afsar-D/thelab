@@ -874,6 +874,18 @@
                         snapContainer.style.scrollBehavior = "";
                         currentProjectIndex = 1;
                         setTimeout(() => { isLooping = false; }, 60);
+                    } else {
+                        // Dynamically sync currentProjectIndex with the closest centered section when scrolling normally
+                        let closestIndex = currentProjectIndex;
+                        let minDiff = Infinity;
+                        sections.forEach((sec, idx) => {
+                            const diff = Math.abs(scrollLeft - getCenterScrollLeft(idx));
+                            if (diff < minDiff) {
+                                minDiff = diff;
+                                closestIndex = idx;
+                            }
+                        });
+                        currentProjectIndex = closestIndex;
                     }
                 }, 65);
             });
