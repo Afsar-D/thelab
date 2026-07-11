@@ -27,7 +27,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./index.css?v=6.3" />
+    <link rel="stylesheet" href="./index.css?v=7.0" />
 </head>
 <body class="spa-body">
 
@@ -992,7 +992,11 @@
                     if (worksList) {
                         setTimeout(() => {
                             worksList.style.scrollBehavior = "auto";
-                            worksList.scrollTop = worksList.clientHeight;
+                            let clientW = worksList.clientWidth;
+                            if (clientW === 0) {
+                                clientW = Math.min(window.innerWidth, 1200);
+                            }
+                            worksList.scrollLeft = clientW;
                             worksList.style.scrollBehavior = "smooth";
                         }, 50);
                     }
@@ -1093,23 +1097,41 @@
                 }
             });
 
-            // Sync original slides with dummy clones
-            const syncProjectClonesState = () => {
+            // Sync original slides with dummy clones two-way
+            const syncTwinLayouts = (indexChanged) => {
                 const worksList = document.getElementById("works-list");
                 if (!worksList) return;
                 const layouts = worksList.querySelectorAll(".works-split-layout");
                 if (layouts.length < 5) return;
 
-                if (layouts[3].classList.contains("collapsed-view")) {
-                    layouts[0].classList.add("collapsed-view");
-                } else {
-                    layouts[0].classList.remove("collapsed-view");
+                if (indexChanged === undefined) {
+                    // Sync all clones from original slides if index is omitted
+                    if (layouts[3].classList.contains("collapsed-view")) layouts[0].classList.add("collapsed-view");
+                    else layouts[0].classList.remove("collapsed-view");
+
+                    if (layouts[1].classList.contains("collapsed-view")) layouts[4].classList.add("collapsed-view");
+                    else layouts[4].classList.remove("collapsed-view");
+                    return;
                 }
 
-                if (layouts[1].classList.contains("collapsed-view")) {
-                    layouts[4].classList.add("collapsed-view");
-                } else {
-                    layouts[4].classList.remove("collapsed-view");
+                const isCollapsed = layouts[indexChanged].classList.contains("collapsed-view");
+
+                if (indexChanged === 0 || indexChanged === 3) {
+                    if (isCollapsed) {
+                        layouts[0].classList.add("collapsed-view");
+                        layouts[3].classList.add("collapsed-view");
+                    } else {
+                        layouts[0].classList.remove("collapsed-view");
+                        layouts[3].classList.remove("collapsed-view");
+                    }
+                } else if (indexChanged === 1 || indexChanged === 4) {
+                    if (isCollapsed) {
+                        layouts[1].classList.add("collapsed-view");
+                        layouts[4].classList.add("collapsed-view");
+                    } else {
+                        layouts[1].classList.remove("collapsed-view");
+                        layouts[4].classList.remove("collapsed-view");
+                    }
                 }
             };
 
@@ -1124,7 +1146,7 @@
                             const expandedLayout = worksList.querySelector(".works-split-layout:not(.collapsed-view)");
                             if (expandedLayout) {
                                 expandedLayout.classList.add("collapsed-view");
-                                syncProjectClonesState();
+                                syncTwinLayouts();
                                 playClickSound();
                                 return;
                             }
@@ -1139,7 +1161,7 @@
                 }
             });
 
-            // Setup vertical infinite loop scrolling snapping mechanics
+            // Setup horizontal infinite loop scrolling snapping mechanics
             const initializeVerticalSnapLoop = () => {
                 const worksList = document.getElementById("works-list");
                 if (!worksList) return;
@@ -1147,49 +1169,87 @@
                 let isLooping = false;
                 let ignoreScrollCollapse = false;
 
+                // Programmatic slide-by-slide horizontal snap scrolling on wheel delta
+                let isWheeling = false;
+                worksList.addEventListener("wheel", (e) => {
+                    if (e.deltaY !== 0) {
+                        e.preventDefault();
+                        if (isWheeling) return;
+
+                        isWheeling = true;
+                        const clientW = worksList.clientWidth || Math.min(window.innerWidth, 1200);
+                        const currentSlide = Math.round(worksList.scrollLeft / clientW);
+                        
+                        let targetSlide = currentSlide;
+                        if (e.deltaY > 0) {
+                            targetSlide = currentSlide + 1;
+                        } else if (e.deltaY < 0) {
+                            targetSlide = currentSlide - 1;
+                        }
+
+                        // Bounds protection
+                        const maxSlides = worksList.querySelectorAll(".works-split-layout").length;
+                        if (targetSlide < 0) targetSlide = 0;
+                        if (targetSlide >= maxSlides) targetSlide = maxSlides - 1;
+
+                        worksList.scrollTo({
+                            left: targetSlide * clientW,
+                            behavior: "smooth"
+                        });
+
+                        setTimeout(() => {
+                            isWheeling = false;
+                        }, 500); // 500ms block window matches transition curve
+                    }
+                }, { passive: false });
+
                 worksList.addEventListener("scroll", () => {
                     if (isLooping) return;
-                    const scrollTop = worksList.scrollTop;
-                    const clientH = worksList.clientHeight;
+                    const scrollLeft = worksList.scrollLeft;
+                    
+                    let clientW = worksList.clientWidth;
+                    if (clientW === 0) {
+                        clientW = Math.min(window.innerWidth, 1200);
+                    }
 
                     // Auto collapse details on scroll ONLY if not locked/transitioning
                     if (hasExpandedProject && !ignoreScrollCollapse) {
                         worksList.querySelectorAll(".works-split-layout").forEach(l => {
                             l.classList.add("collapsed-view");
                         });
-                        syncProjectClonesState();
+                        syncTwinLayouts();
                         hasExpandedProject = false;
                     }
 
-                    if (scrollTop <= 5) {
+                    if (scrollLeft <= 5) {
                         isLooping = true;
                         // Temporarily disable scroll behavior and scroll snap to prevent loop flickers
                         worksList.style.scrollBehavior = "auto";
                         worksList.style.scrollSnapType = "none";
                         
-                        worksList.scrollTop = clientH * 3;
+                        worksList.scrollLeft = clientW * 3;
                         
                         // Force a browser reflow to flush layout changes immediately
                         const triggerFlush = worksList.offsetHeight;
 
                         setTimeout(() => {
-                            worksList.style.scrollSnapType = "y mandatory";
+                            worksList.style.scrollSnapType = "x mandatory";
                             worksList.style.scrollBehavior = "smooth";
                             isLooping = false;
                         }, 50);
-                    } else if (scrollTop >= (clientH * 4 - 5)) {
+                    } else if (scrollLeft >= (clientW * 4 - 5)) {
                         isLooping = true;
                         // Temporarily disable scroll behavior and scroll snap to prevent loop flickers
                         worksList.style.scrollBehavior = "auto";
                         worksList.style.scrollSnapType = "none";
                         
-                        worksList.scrollTop = clientH * 1;
+                        worksList.scrollLeft = clientW * 1;
                         
                         // Force a browser reflow
                         const triggerFlush = worksList.offsetHeight;
 
                         setTimeout(() => {
-                            worksList.style.scrollSnapType = "y mandatory";
+                            worksList.style.scrollSnapType = "x mandatory";
                             worksList.style.scrollBehavior = "smooth";
                             isLooping = false;
                         }, 50);
@@ -1202,7 +1262,7 @@
                 };
             };
 
-            // Toggle project expansion details inside Works vertical scrolling list
+            // Toggle project expansion details inside Works horizontal scrolling list
             const registerProjectExpansionToggles = () => {
                 const worksList = document.getElementById("works-list");
                 if (!worksList) return;
@@ -1229,7 +1289,8 @@
 
                             // Expand this project!
                             layout.classList.remove("collapsed-view");
-                            syncProjectClonesState();
+                            const idx = Array.from(worksList.querySelectorAll(".works-split-layout")).indexOf(layout);
+                            syncTwinLayouts(idx);
                             hasExpandedProject = true;
                         }
                     }
@@ -1242,7 +1303,8 @@
                         const layout = closeBtn.closest(".works-split-layout");
                         if (layout) {
                             layout.classList.add("collapsed-view");
-                            syncProjectClonesState();
+                            const idx = Array.from(worksList.querySelectorAll(".works-split-layout")).indexOf(layout);
+                            syncTwinLayouts(idx);
                             hasExpandedProject = false;
                         }
                     }
