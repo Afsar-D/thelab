@@ -1501,25 +1501,13 @@ body {
 }
 
 .social-icon-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    transform: scale(0.85);
+    display: none !important; /* Force vector SVGs for crisp, modern icons */
 }
 
 .social-link-btn:hover .social-icon-svg {
-    opacity: 0;
-}
-
-.social-link-btn:hover .social-icon-img {
-    opacity: 1;
-    transform: scale(1);
+    opacity: 1 !important;
+    stroke: #ffffff !important; /* Force high contrast white on hover gradients */
+    transform: scale(1.1);
 }
 
 .contact-footer {
@@ -1902,6 +1890,33 @@ body.menu-lock {
     .works-split-layout {
         gap: 12px;
         padding: 16px;
+    }
+
+    .social-grid {
+        gap: 12px !important;
+    }
+    
+    .social-link-btn {
+        width: 52px !important;
+        height: 52px !important;
+        border-radius: 52px !important;
+    }
+    
+    .social-link-btn::before,
+    .social-link-btn::after {
+        border-radius: 52px !important;
+    }
+    
+    .social-link-btn:hover {
+        width: 52px !important;
+    }
+    
+    .social-link-btn:hover .social-icon-wrapper {
+        transform: scale(1) !important;
+    }
+    
+    .social-link-btn:hover .title {
+        transform: scale(0) !important;
     }
 
 
