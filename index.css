@@ -751,6 +751,10 @@ body {
     scroll-snap-align: center; /* Snaps each card cleanly to screen center */
     scroll-snap-stop: always;
     flex-shrink: 0; /* Prevent slides from shrinking horizontally */
+    transform: translate3d(0, 0, 0); /* Force GPU compositor isolation */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
 }
 
 .works-split-layout {
@@ -925,6 +929,9 @@ body {
     box-shadow: none !important; /* Removed box shadow completely */
     transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.45s;
     cursor: pointer;
+    transform: translate3d(0, 0, 0); /* Direct GPU rendering thread promotion */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     will-change: transform, opacity; /* isolates zooms and reveals on GPU */
 }
 

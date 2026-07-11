@@ -27,7 +27,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./index.css?v=7.3" />
+    <link rel="stylesheet" href="./index.css?v=7.4" />
 </head>
 <body class="spa-body">
 
@@ -1229,6 +1229,8 @@
                     }
                 }, { passive: false });
 
+                let scrollTimeout;
+
                 const handleLoopReset = () => {
                     if (isLooping || isTouching) return;
                     const scrollLeft = worksList.scrollLeft;
@@ -1240,8 +1242,6 @@
 
                     if (scrollLeft <= 5) {
                         isLooping = true;
-                        // Kill active momentum scrolling on jump
-                        worksList.style.overflowX = "hidden";
                         worksList.style.scrollBehavior = "auto";
                         worksList.scrollLeft = clientW * 3;
                         
@@ -1249,14 +1249,11 @@
                         const forceReflow = worksList.scrollLeft;
 
                         setTimeout(() => {
-                            worksList.style.overflowX = "auto";
                             worksList.style.scrollBehavior = "smooth";
                             isLooping = false;
                         }, 50);
                     } else if (scrollLeft >= (clientW * 4 - 8)) { // 8px tolerance window
                         isLooping = true;
-                        // Kill active momentum scrolling on jump
-                        worksList.style.overflowX = "hidden";
                         worksList.style.scrollBehavior = "auto";
                         worksList.scrollLeft = clientW * 1;
                         
@@ -1264,7 +1261,6 @@
                         const forceReflow = worksList.scrollLeft;
 
                         setTimeout(() => {
-                            worksList.style.overflowX = "auto";
                             worksList.style.scrollBehavior = "smooth";
                             isLooping = false;
                         }, 50);
@@ -1272,8 +1268,6 @@
                 };
 
                 worksList.addEventListener("scroll", () => {
-                    const scrollLeft = worksList.scrollLeft;
-                    
                     // Auto collapse details on scroll ONLY if not locked/transitioning
                     if (hasExpandedProject && !ignoreScrollCollapse) {
                         worksList.querySelectorAll(".works-split-layout").forEach(l => {
@@ -1283,6 +1277,15 @@
                         hasExpandedProject = false;
                     }
 
+                    // Debounce checking until scroll momentum has completely stopped
+                    clearTimeout(scrollTimeout);
+                    scrollTimeout = setTimeout(() => {
+                        handleLoopReset();
+                    }, 80);
+                });
+
+                worksList.addEventListener("scrollend", () => {
+                    clearTimeout(scrollTimeout);
                     handleLoopReset();
                 });
 
