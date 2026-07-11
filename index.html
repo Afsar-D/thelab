@@ -27,7 +27,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./index.css?v=7.6" />
+    <link rel="stylesheet" href="./index.css?v=7.9" />
 </head>
 <body class="spa-body">
 
@@ -107,9 +107,10 @@
                 <div class="bottom-center-brand">
                     <span class="logo-initials"></span>
                     <button type="button" class="music-toggle-btn hover-grow-trigger" id="home-music-toggle" aria-label="Toggle music">
-                        <span class="audio-bar bar-1"></span>
-                        <span class="audio-bar bar-2"></span>
-                        <span class="audio-bar bar-3"></span>
+                        <span class="music-bar music-bar-1"></span>
+                        <span class="music-bar music-bar-2"></span>
+                        <span class="music-bar music-bar-3"></span>
+                        <span class="music-bar music-bar-4"></span>
                     </button>
                     <button type="button" class="theme-toggle-btn hover-grow-trigger" id="home-theme-toggle" aria-label="Toggle theme">
                         <span class="theme-dot"></span>
@@ -604,9 +605,10 @@
             </a>
             
             <button type="button" class="menu-music-toggle hover-grow-trigger" id="music-toggle" aria-label="Toggle music">
-                <span class="audio-bar bar-1"></span>
-                <span class="audio-bar bar-2"></span>
-                <span class="audio-bar bar-3"></span>
+                <span class="music-bar music-bar-1"></span>
+                <span class="music-bar music-bar-2"></span>
+                <span class="music-bar music-bar-3"></span>
+                <span class="music-bar music-bar-4"></span>
             </button>
             <button type="button" class="menu-theme-dot hover-grow-trigger" id="theme-toggle" aria-label="Toggle theme"></button>
         </div>
@@ -1055,7 +1057,7 @@
                 if (audioCtx) return;
                 try {
                     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                    fetch(`${basepath}/mixkit-mouse-click-close-1113.wav`)
+                    fetch(`${basepath}/ButtonClick.mp3`)
                         .then(res => res.arrayBuffer())
                         .then(arrayBuffer => audioCtx.decodeAudioData(arrayBuffer))
                         .then(decodedData => {

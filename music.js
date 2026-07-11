@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!audio || toggles.length === 0) return;
 
     // Set stable, relaxing volume
-    audio.volume = 0.28;
+    audio.volume = 0.4;
 
     // Check states
     const isMusicSavedPlaying = localStorage.getItem("musicPlaying") === "true";
