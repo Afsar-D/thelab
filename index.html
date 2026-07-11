@@ -27,7 +27,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./index.css?v=7.0" />
+    <link rel="stylesheet" href="./index.css?v=7.1" />
 </head>
 <body class="spa-body">
 
@@ -1138,7 +1138,7 @@
             // Keyboard Escape shortcut to navigate home or collapse expanded projects
             document.addEventListener("keydown", (e) => {
                 if (e.key === "Escape" || e.keyCode === 27) {
-                    const currentView = getRouteFromUrl();
+                    const currentView = currentViewId;
                     
                     if (currentView === "works") {
                         const worksList = document.getElementById("works-list");
@@ -1146,15 +1146,20 @@
                             const expandedLayout = worksList.querySelector(".works-split-layout:not(.collapsed-view)");
                             if (expandedLayout) {
                                 expandedLayout.classList.add("collapsed-view");
-                                syncTwinLayouts();
+                                const idx = Array.from(worksList.querySelectorAll(".works-split-layout")).indexOf(expandedLayout);
+                                syncTwinLayouts(idx);
                                 playClickSound();
+                                hasExpandedProject = false;
                                 return;
                             }
                         }
                     }
                     
                     if (currentView !== "home") {
-                        history.pushState(null, null, basepath + "/");
+                        const targetPath = basepath + "/";
+                        if (window.location.pathname !== targetPath) {
+                            history.pushState(null, document.title, targetPath);
+                        }
                         handleRoute("home");
                         playClickSound();
                     }
@@ -1168,6 +1173,22 @@
 
                 let isLooping = false;
                 let ignoreScrollCollapse = false;
+                let isTouching = false;
+
+                // Track mobile touch state to prevent momentum interrupts
+                worksList.addEventListener("touchstart", () => {
+                    isTouching = true;
+                }, { passive: true });
+
+                worksList.addEventListener("touchend", () => {
+                    isTouching = false;
+                    handleLoopReset();
+                }, { passive: true });
+
+                worksList.addEventListener("touchcancel", () => {
+                    isTouching = false;
+                    handleLoopReset();
+                }, { passive: true });
 
                 // Programmatic slide-by-slide horizontal snap scrolling on wheel delta
                 let isWheeling = false;
@@ -1203,15 +1224,36 @@
                     }
                 }, { passive: false });
 
-                worksList.addEventListener("scroll", () => {
-                    if (isLooping) return;
+                const handleLoopReset = () => {
+                    if (isLooping || isTouching) return;
                     const scrollLeft = worksList.scrollLeft;
-                    
                     let clientW = worksList.clientWidth;
                     if (clientW === 0) {
                         clientW = Math.min(window.innerWidth, 1200);
                     }
 
+                    if (scrollLeft <= 5) {
+                        isLooping = true;
+                        worksList.style.scrollBehavior = "auto";
+                        worksList.scrollLeft = clientW * 3;
+                        setTimeout(() => {
+                            worksList.style.scrollBehavior = "smooth";
+                            isLooping = false;
+                        }, 50);
+                    } else if (scrollLeft >= (clientW * 4 - 5)) {
+                        isLooping = true;
+                        worksList.style.scrollBehavior = "auto";
+                        worksList.scrollLeft = clientW * 1;
+                        setTimeout(() => {
+                            worksList.style.scrollBehavior = "smooth";
+                            isLooping = false;
+                        }, 50);
+                    }
+                };
+
+                worksList.addEventListener("scroll", () => {
+                    const scrollLeft = worksList.scrollLeft;
+                    
                     // Auto collapse details on scroll ONLY if not locked/transitioning
                     if (hasExpandedProject && !ignoreScrollCollapse) {
                         worksList.querySelectorAll(".works-split-layout").forEach(l => {
@@ -1221,39 +1263,7 @@
                         hasExpandedProject = false;
                     }
 
-                    if (scrollLeft <= 5) {
-                        isLooping = true;
-                        // Temporarily disable scroll behavior and scroll snap to prevent loop flickers
-                        worksList.style.scrollBehavior = "auto";
-                        worksList.style.scrollSnapType = "none";
-                        
-                        worksList.scrollLeft = clientW * 3;
-                        
-                        // Force a browser reflow to flush layout changes immediately
-                        const triggerFlush = worksList.offsetHeight;
-
-                        setTimeout(() => {
-                            worksList.style.scrollSnapType = "x mandatory";
-                            worksList.style.scrollBehavior = "smooth";
-                            isLooping = false;
-                        }, 50);
-                    } else if (scrollLeft >= (clientW * 4 - 5)) {
-                        isLooping = true;
-                        // Temporarily disable scroll behavior and scroll snap to prevent loop flickers
-                        worksList.style.scrollBehavior = "auto";
-                        worksList.style.scrollSnapType = "none";
-                        
-                        worksList.scrollLeft = clientW * 1;
-                        
-                        // Force a browser reflow
-                        const triggerFlush = worksList.offsetHeight;
-
-                        setTimeout(() => {
-                            worksList.style.scrollSnapType = "x mandatory";
-                            worksList.style.scrollBehavior = "smooth";
-                            isLooping = false;
-                        }, 50);
-                    }
+                    handleLoopReset();
                 });
 
                 // Attach setter to window for click trigger lock accessibility
