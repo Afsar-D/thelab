@@ -298,7 +298,7 @@ body {
     border: none;
     cursor: pointer;
     font-family: "Safiro Medium", sans-serif;
-    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
     font-weight: 500;
     color: var(--text-primary);
     text-decoration: none;
@@ -336,7 +336,7 @@ body {
 
 .logo-initials {
     font-family: "Safiro Bold", sans-serif;
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-size: 1.6rem;
     text-transform: lowercase;
     font-weight: 700;
     color: var(--text-primary);
@@ -345,15 +345,16 @@ body {
 .theme-toggle-btn {
     background: none;
     border: 1px solid var(--border-color);
-    width: 38px;
-    height: 22px;
-    border-radius: 100px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%; /* Perfect minimal circle */
     position: relative;
     cursor: pointer;
-    padding: 2px;
-    transition: var(--transition-fast);
     display: flex;
     align-items: center;
+    justify-content: center;
+    transition: var(--transition-fast);
+    padding: 0;
 }
 
 .theme-toggle-btn:hover {
@@ -361,13 +362,10 @@ body {
 }
 
 .theme-dot {
-    width: 16px;
-    height: 16px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    background-color: var(--theme-dot-bg);
-    position: absolute;
-    left: 2px;
-    transform: var(--theme-dot-transform);
+    background-color: var(--text-primary); /* Concentric dot transitions color dynamically */
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease;
 }
 
@@ -453,7 +451,7 @@ body {
 
 .card-title {
     font-family: "Safiro Medium", sans-serif;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 700;
     text-transform: lowercase;
     color: var(--text-primary);
@@ -582,7 +580,7 @@ body {
 
 .overlay-title {
     font-family: "Safiro Bold", sans-serif;
-    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
     font-weight: 700;
     text-transform: lowercase;
     line-height: 1.1;
@@ -874,7 +872,7 @@ body {
 
 .work-snap-title {
     font-family: "Safiro Bold", sans-serif;
-    font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+    font-size: clamp(1.8rem, 3.2vw, 2.4rem);
     font-weight: 700;
     text-transform: lowercase;
     line-height: 1.1;
@@ -911,13 +909,13 @@ body {
     text-decoration: none;
     position: relative;
     overflow: hidden; 
-    border-radius: 24px; /* Album cover art rounded borders */
+    border-radius: 8px; /* Album cover art rounded borders */
 }
 
 .work-cover-card {
     aspect-ratio: 1 / 1;
     width: 100%;
-    border-radius: 24px;
+    border-radius: 8px;
     position: relative;
     overflow: hidden;
     background-color: var(--bg-secondary);
@@ -1091,7 +1089,7 @@ body {
 
 .bio-paragraph {
     font-family: var(--font-body);
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.6;
     color: var(--text-secondary);
     margin-bottom: 32px;
@@ -1257,7 +1255,7 @@ body {
 
 .timeline-role {
     font-family: "Safiro Medium", sans-serif;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 4px;
@@ -1265,14 +1263,14 @@ body {
 
 .timeline-company {
     font-family: var(--font-body);
-    font-size: 13px;
+    font-size: 12px;
     color: var(--text-secondary);
     margin-bottom: 16px;
 }
 
 .timeline-text {
     font-family: var(--font-body);
-    font-size: 13.5px;
+    font-size: 12.5px;
     color: var(--text-secondary);
     line-height: 1.6;
 }
@@ -1493,7 +1491,7 @@ body.menu-lock {
 .scramble-title-line {
     margin-top: 24px;
     font-family: "Safiro Medium", sans-serif;
-    font-size: clamp(16px, 2.2vw, 28px);
+    font-size: clamp(14px, 1.8vw, 20px);
     letter-spacing: -0.02em;
     color: var(--text-primary);
     display: flex;
@@ -1512,6 +1510,7 @@ body.menu-lock {
     font-weight: 600;
     font-family: monospace;
     letter-spacing: 0.04em;
+    font-style: italic;
 }
 
 /* 13. Breakpoints & Responsiveness */
@@ -1607,41 +1606,49 @@ body.menu-lock {
 
     .works-split-layout {
         display: flex;
-        flex-direction: column !important; /* Forces text details on top, cover card below on mobile */
+        flex-direction: column !important;
         justify-content: center;
         align-items: center;
-        gap: 15px !important;
         height: 100% !important;
         width: 100%;
         text-align: center;
         padding: 16px;
         box-sizing: border-box;
         transition: none !important; /* Eliminate layout reflow transition to prevent jank */
+        position: relative; /* Boundary for absolute positioning of details */
     }
     
     .work-info-col {
+        position: absolute !important;
+        bottom: 5%; /* Anchor perfectly below the scaled card in bottom half */
+        left: 50%;
+        transform: translate3d(-50%, 15px, 0); /* Center absolutely and prepare slide offset */
+        width: calc(100% - 32px) !important;
+        max-width: 380px !important;
+        display: flex;
+        flex-direction: column;
         align-items: center;
-        flex: 0 0 auto;
-        max-width: 100%;
-        opacity: 1;
-        transform: translateY(0);
-        transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), max-height 0.25s ease-out;
-        max-height: 400px;
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: transform, opacity;
+        z-index: 5;
         margin-right: 0 !important;
-        will-change: transform, opacity, max-height;
     }
     
     /* Collapsed view states on mobile (moves card to center, hides details vertically) */
     .works-split-layout.collapsed-view .work-info-col {
         opacity: 0 !important;
         pointer-events: none !important;
-        transform: translateY(15px) !important;
-        max-height: 0 !important;
-        overflow: hidden !important;
-        margin-bottom: 0 !important;
-        transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), max-height 0.25s ease-out !important;
+        transform: translate3d(-50%, 15px, 0) !important;
     }
     
+    .works-split-layout:not(.collapsed-view) .work-info-col {
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        transform: translate3d(-50%, 0, 0) !important;
+    }
+
     .work-cover-col {
         flex: 0 0 auto;
         width: 100%;
@@ -1650,6 +1657,16 @@ body.menu-lock {
         align-items: center;
         transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         will-change: transform;
+        transform: translate3d(0, 0, 0);
+        z-index: 2;
+    }
+
+    .works-split-layout.collapsed-view .work-cover-col {
+        transform: translate3d(0, 0, 0) !important;
+    }
+    
+    .works-split-layout:not(.collapsed-view) .work-cover-col {
+        transform: translate3d(0, -80px, 0) !important; /* Move up on expand to clear space for text details */
     }
 
     .work-cover-link {
@@ -1657,15 +1674,8 @@ body.menu-lock {
         flex-direction: column !important;
         align-items: center !important;
         width: 100% !important;
+        max-width: 100% !important;
         text-decoration: none;
-    }
-    
-    .works-split-layout.collapsed-view .work-cover-col {
-        transform: translateY(0);
-    }
-    
-    .works-split-layout:not(.collapsed-view) .work-cover-col {
-        transform: translateY(-10px);
     }
     
     .details-close-btn {
@@ -1692,7 +1702,7 @@ body.menu-lock {
     .work-cover-card {
         aspect-ratio: 1 / 1 !important;
         width: 100% !important;
-        max-width: 260px !important; /* Static layout size to avoid layout reflows */
+        max-width: 200px !important; /* Reduced card size to 70-80% of original for mobile */
         height: auto !important;
         transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
         will-change: transform, opacity;
@@ -1836,8 +1846,8 @@ body.menu-lock {
     }
 
     .scramble-title-line {
-        font-size: 1.15rem !important;
-        flex-direction: column !important; /* Stack text vertically on mobile to prevent overlaps */
+        font-size: 13px !important; /* Reduced horizontal size to prevent mobile overlaps */
+        flex-direction: row !important; /* Keep it on a single line */
         gap: 6px !important;
         text-align: center;
     }

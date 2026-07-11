@@ -27,7 +27,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./index.css?v=4.7" />
+    <link rel="stylesheet" href="./index.css?v=5.3" />
 </head>
 <body class="spa-body">
 
@@ -44,8 +44,7 @@
 
     <!-- Background Music -->
     <audio id="bg-music" src="./verclub_music-relaxing-music-550889.mp3" loop></audio>
-    <!-- Click Sound Effect -->
-    <audio id="click-sound" src="./mixkit-mouse-click-close-1113.wav" preload="auto"></audio>
+
 
     <!-- 2. Custom Magnetic Pointer Cursor (Focus-Frame Corner Brackets) -->
     <div id="focus-cursor" class="focus-cursor" aria-hidden="true">
@@ -1056,7 +1055,7 @@
                 if (audioCtx) return;
                 try {
                     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                    fetch("./mixkit-mouse-click-close-1113.wav")
+                    fetch(`${basepath}/mixkit-mouse-click-close-1113.wav`)
                         .then(res => res.arrayBuffer())
                         .then(arrayBuffer => audioCtx.decodeAudioData(arrayBuffer))
                         .then(decodedData => {
@@ -1089,17 +1088,8 @@
                         source.start(0);
                         return; // Zero-latency play success
                     } catch (e) {
-                        console.log("Web Audio playback failed, falling back to audio element.");
+                        console.log("Web Audio playback failed.");
                     }
-                }
-
-                const clickSound = document.getElementById("click-sound");
-                if (clickSound) {
-                    clickSound.currentTime = 0;
-                    clickSound.volume = 0.55;
-                    clickSound.play().catch(err => {
-                        console.log("Audio playback waiting for gesture.");
-                    });
                 }
             };
 
