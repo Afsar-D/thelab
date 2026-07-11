@@ -27,7 +27,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./index.css?v=5.9" />
+    <link rel="stylesheet" href="./index.css?v=6.3" />
 </head>
 <body class="spa-body">
 
@@ -324,6 +324,9 @@
 
         <!-- VIEW C: About (Spacious single column lists) -->
         <section id="about-view" class="app-view">
+            <!-- Background interactive drifting orbs -->
+            <div class="about-bg-glow-orb orb-1"></div>
+            <div class="about-bg-glow-orb orb-2"></div>
             <div class="container subpage-container about-spacious-container">
                 
                 <header class="overlay-header reveal-on-scroll">
@@ -340,15 +343,15 @@
                         </p>
                         <div class="about-stats-row">
                             <div class="bio-stat">
-                                <span class="bio-stat-value">3+</span>
+                                <span class="bio-stat-value" data-target="3" data-suffix="+">0+</span>
                                 <span class="bio-stat-label">shipped projects</span>
                             </div>
                             <div class="bio-stat">
-                                <span class="bio-stat-value">6</span>
+                                <span class="bio-stat-value" data-target="6" data-suffix="">0</span>
                                 <span class="bio-stat-label">core technologies</span>
                             </div>
                             <div class="bio-stat">
-                                <span class="bio-stat-value">3</span>
+                                <span class="bio-stat-value" data-target="3" data-suffix="">0</span>
                                 <span class="bio-stat-label">certifications</span>
                             </div>
                         </div>
@@ -361,42 +364,42 @@
                     <div class="about-section-content">
                         <h4 class="about-list-subtitle">technical skills</h4>
                         <div class="about-rows-list">
-                            <div class="about-row hover-glow-card">
+                            <div class="about-row hover-glow-card reveal-on-scroll">
                                 <div class="about-row-left">
                                     <img src="./c.png" alt="C" class="row-logo" />
                                     <span class="row-title">C Programming</span>
                                 </div>
                                 <span class="row-desc">software & algorithms</span>
                             </div>
-                            <div class="about-row hover-glow-card">
+                            <div class="about-row hover-glow-card reveal-on-scroll">
                                 <div class="about-row-left">
                                     <img src="./py.png" alt="Python" class="row-logo" />
                                     <span class="row-title">Python</span>
                                 </div>
                                 <span class="row-desc">data science & scripting</span>
                             </div>
-                            <div class="about-row hover-glow-card">
+                            <div class="about-row hover-glow-card reveal-on-scroll">
                                 <div class="about-row-left">
                                     <img src="./html.png" alt="HTML" class="row-logo" />
                                     <span class="row-title">HTML5</span>
                                 </div>
                                 <span class="row-desc">structural markup</span>
                             </div>
-                            <div class="about-row hover-glow-card">
+                            <div class="about-row hover-glow-card reveal-on-scroll">
                                 <div class="about-row-left">
                                     <img src="./css.png" alt="CSS" class="row-logo" />
                                     <span class="row-title">CSS3</span>
                                 </div>
                                 <span class="row-desc">styling design systems</span>
                             </div>
-                            <div class="about-row hover-glow-card">
+                            <div class="about-row hover-glow-card reveal-on-scroll">
                                 <div class="about-row-left">
                                     <img src="./js.png" alt="JavaScript" class="row-logo" />
                                     <span class="row-title">JavaScript</span>
                                 </div>
                                 <span class="row-desc">frontend application logic</span>
                             </div>
-                            <div class="about-row hover-glow-card">
+                            <div class="about-row hover-glow-card reveal-on-scroll">
                                 <div class="about-row-left">
                                     <img src="./React.png" alt="React" class="row-logo" />
                                     <span class="row-title">React</span>
@@ -407,21 +410,21 @@
 
                         <h4 class="about-list-subtitle" style="margin-top: 48px;">tools</h4>
                         <div class="about-rows-list">
-                            <div class="about-row hover-glow-card">
+                            <div class="about-row hover-glow-card reveal-on-scroll">
                                 <div class="about-row-left">
                                     <img src="./git.png" alt="GitHub" class="row-logo" />
                                     <span class="row-title">GitHub</span>
                                 </div>
                                 <span class="row-desc">version control & deployment</span>
                             </div>
-                            <div class="about-row hover-glow-card">
+                            <div class="about-row hover-glow-card reveal-on-scroll">
                                 <div class="about-row-left">
                                     <img src="./vs.png" alt="VS Code" class="row-logo" />
                                     <span class="row-title">VS Code</span>
                                 </div>
                                 <span class="row-desc">primary code editing IDE</span>
                             </div>
-                            <div class="about-row hover-glow-card">
+                            <div class="about-row hover-glow-card reveal-on-scroll">
                                 <div class="about-row-left">
                                     <img src="./vite.png" alt="Vite" class="row-logo" />
                                     <span class="row-title">Vite</span>
@@ -438,7 +441,7 @@
                     <div class="about-section-content">
                         <h4 class="about-list-subtitle">certifications</h4>
                         <div class="about-rows-list">
-                            <div class="about-row hover-glow-card">
+                            <div class="about-row hover-glow-card reveal-on-scroll">
                                 <div class="about-row-left">
                                     <img src="./Udemy.png" alt="Udemy" class="row-logo" />
                                     <div class="row-title-group">
@@ -448,7 +451,7 @@
                                 </div>
                                 <a href="https://www.udemy.com/certificate/UC-18067557-e51b-4061-be61-690d59b0445b/" target="_blank" rel="noopener noreferrer" class="row-link hover-grow-trigger">credentials</a>
                             </div>
-                            <div class="about-row hover-glow-card">
+                            <div class="about-row hover-glow-card reveal-on-scroll">
                                 <div class="about-row-left">
                                     <img src="./aws.jpg" alt="AWS" class="row-logo" />
                                     <div class="row-title-group">
@@ -458,7 +461,7 @@
                                 </div>
                                 <a href="https://www.credly.com/go/FtOtcw41" target="_blank" rel="noopener noreferrer" class="row-link hover-grow-trigger">credentials</a>
                             </div>
-                            <div class="about-row hover-glow-card">
+                            <div class="about-row hover-glow-card reveal-on-scroll">
                                 <div class="about-row-left">
                                     <img src="./aws.jpg" alt="AWS" class="row-logo" />
                                     <div class="row-title-group">
@@ -826,42 +829,26 @@
                 runScramble(phrases[phraseIndex]);
             }, 2800);
 
-            // ==========================================
-            // About Page Scroll Driven Parallax
-            // ==========================================
-            const aboutView = document.getElementById("about-view");
-            const animateAboutScroll = () => {
-                const sections = aboutView.querySelectorAll(".about-spacious-section");
-                sections.forEach(sec => {
-                    const rect = sec.getBoundingClientRect();
-                    const viewHeight = window.innerHeight;
-
-                    const secCenter = rect.top + rect.height / 2;
-                    const viewCenter = viewHeight / 2;
-                    const dist = Math.abs(viewCenter - secCenter);
-
-                    let ratio = dist / (viewHeight * 0.8);
-                    if (ratio > 1) ratio = 1;
-
-                    const opacity = 1 - (ratio * 0.55);
-                    const translateY = ratio * 15;
-
-                    const content = sec.querySelector(".about-section-content");
-                    const eyebrow = sec.querySelector(".about-section-eyebrow");
-
-                    if (content) {
-                        content.style.opacity = opacity;
-                        content.style.transform = `translateY(${translateY}px)`;
-                        content.style.transition = "opacity 0.12s ease-out, transform 0.12s ease-out";
-                    }
-                    if (eyebrow) {
-                        eyebrow.style.opacity = opacity;
-                        eyebrow.style.transition = "opacity 0.12s ease-out";
-                    }
+            // Stats count up animation inside About section
+            const animateStatsCountUp = () => {
+                const stats = document.querySelectorAll(".bio-stat-value");
+                stats.forEach(stat => {
+                    const target = parseInt(stat.getAttribute("data-target"), 10);
+                    const suffix = stat.getAttribute("data-suffix") || "";
+                    let current = 0;
+                    const duration = 800; // Total animation length in ms
+                    const stepTime = Math.max(Math.floor(duration / target), 20);
+                    
+                    stat.innerText = `0${suffix}`;
+                    const timer = setInterval(() => {
+                        current += 1;
+                        stat.innerText = `${current}${suffix}`;
+                        if (current >= target) {
+                            clearInterval(timer);
+                        }
+                    }, stepTime);
                 });
             };
-
-            aboutView.addEventListener("scroll", animateAboutScroll);
 
             // ==========================================
             // Intersection Observer Reveal Animations
@@ -875,6 +862,10 @@
                         const delay = Math.min(index * 60, 360);
                         entry.target.style.transitionDelay = `${delay}ms`;
                         entry.target.classList.add("is-visible");
+                    } else {
+                        // Reverse animation on scroll out
+                        entry.target.classList.remove("is-visible");
+                        entry.target.style.transitionDelay = "0ms";
                     }
                 });
             }, { threshold: 0.02 });
@@ -993,7 +984,7 @@
                 triggerScrollReveals();
 
                 if (viewId === "about") {
-                    setTimeout(animateAboutScroll, 50);
+                    setTimeout(animateStatsCountUp, 150); // Counts up numbers dynamically on route enter
                 }
 
                 if (viewId === "works") {
@@ -1154,13 +1145,15 @@
                 if (!worksList) return;
 
                 let isLooping = false;
+                let ignoreScrollCollapse = false;
+
                 worksList.addEventListener("scroll", () => {
                     if (isLooping) return;
                     const scrollTop = worksList.scrollTop;
                     const clientH = worksList.clientHeight;
 
-                    // Auto collapse details on scroll to keep loop snaps clean
-                    if (hasExpandedProject) {
+                    // Auto collapse details on scroll ONLY if not locked/transitioning
+                    if (hasExpandedProject && !ignoreScrollCollapse) {
                         worksList.querySelectorAll(".works-split-layout").forEach(l => {
                             l.classList.add("collapsed-view");
                         });
@@ -1170,22 +1163,43 @@
 
                     if (scrollTop <= 5) {
                         isLooping = true;
+                        // Temporarily disable scroll behavior and scroll snap to prevent loop flickers
                         worksList.style.scrollBehavior = "auto";
+                        worksList.style.scrollSnapType = "none";
+                        
                         worksList.scrollTop = clientH * 3;
+                        
+                        // Force a browser reflow to flush layout changes immediately
+                        const triggerFlush = worksList.offsetHeight;
+
                         setTimeout(() => {
+                            worksList.style.scrollSnapType = "y mandatory";
                             worksList.style.scrollBehavior = "smooth";
                             isLooping = false;
                         }, 50);
                     } else if (scrollTop >= (clientH * 4 - 5)) {
                         isLooping = true;
+                        // Temporarily disable scroll behavior and scroll snap to prevent loop flickers
                         worksList.style.scrollBehavior = "auto";
+                        worksList.style.scrollSnapType = "none";
+                        
                         worksList.scrollTop = clientH * 1;
+                        
+                        // Force a browser reflow
+                        const triggerFlush = worksList.offsetHeight;
+
                         setTimeout(() => {
+                            worksList.style.scrollSnapType = "y mandatory";
                             worksList.style.scrollBehavior = "smooth";
                             isLooping = false;
                         }, 50);
                     }
                 });
+
+                // Attach setter to window for click trigger lock accessibility
+                window.setIgnoreScrollCollapse = (val) => {
+                    ignoreScrollCollapse = val;
+                };
             };
 
             // Toggle project expansion details inside Works vertical scrolling list
@@ -1201,6 +1215,12 @@
                             e.preventDefault();
                             e.stopPropagation();
                             playClickSound();
+
+                            // Temporarily lock scroll auto-collapse to prevent layout-shift race closures
+                            if (window.setIgnoreScrollCollapse) {
+                                window.setIgnoreScrollCollapse(true);
+                                setTimeout(() => window.setIgnoreScrollCollapse(false), 300);
+                            }
 
                             // Collapse all other projects to keep focus clean
                             worksList.querySelectorAll(".works-split-layout").forEach(l => {
