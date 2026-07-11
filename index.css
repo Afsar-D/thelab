@@ -1619,34 +1619,38 @@ body.menu-lock {
     }
     
     .work-info-col {
-        position: absolute !important;
-        bottom: 5%; /* Anchor perfectly below the scaled card in bottom half */
-        left: 50%;
-        transform: translate3d(-50%, 15px, 0); /* Center absolutely and prepare slide offset */
-        width: calc(100% - 32px) !important;
+        position: relative !important; /* Restore normal layout flow to prevent vertical collisions */
+        bottom: auto !important;
+        left: auto !important;
+        transform: translate3d(0, 10px, 0);
+        width: 100% !important;
         max-width: 380px !important;
         display: flex;
         flex-direction: column;
         align-items: center;
         opacity: 0;
         pointer-events: none;
-        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        will-change: transform, opacity;
-        z-index: 5;
+        z-index: 2;
         margin-right: 0 !important;
+        max-height: 0 !important;
+        overflow: hidden !important;
+        transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: max-height, opacity, transform;
     }
     
-    /* Collapsed view states on mobile (moves card to center, hides details vertically) */
+    /* Collapsed view states on mobile */
     .works-split-layout.collapsed-view .work-info-col {
         opacity: 0 !important;
         pointer-events: none !important;
-        transform: translate3d(-50%, 15px, 0) !important;
+        max-height: 0 !important;
+        transform: translate3d(0, 10px, 0) !important;
     }
     
     .works-split-layout:not(.collapsed-view) .work-info-col {
         opacity: 1 !important;
         pointer-events: auto !important;
-        transform: translate3d(-50%, 0, 0) !important;
+        max-height: 350px !important; /* Caps text description comfortably inside flow */
+        transform: translate3d(0, 0, 0) !important;
     }
 
     .work-cover-col {
@@ -1658,7 +1662,7 @@ body.menu-lock {
         transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         will-change: transform;
         transform: translate3d(0, 0, 0);
-        z-index: 2;
+        z-index: 1;
     }
 
     .works-split-layout.collapsed-view .work-cover-col {
@@ -1666,7 +1670,7 @@ body.menu-lock {
     }
     
     .works-split-layout:not(.collapsed-view) .work-cover-col {
-        transform: translate3d(0, -80px, 0) !important; /* Move up on expand to clear space for text details */
+        transform: translate3d(0, 0, 0) !important; /* Relies on flexbox auto-centering layout flow */
     }
 
     .work-cover-link {
