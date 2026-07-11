@@ -1609,7 +1609,7 @@ body.menu-lock {
         flex-direction: column !important;
         justify-content: center;
         align-items: center;
-        gap: 16px !important; /* Overrides desktop 80px gap */
+        gap: 50px !important; /* Overrides desktop 80px gap with a tight minimal gap */
         height: 100% !important;
         width: 100%;
         text-align: center;
@@ -1626,6 +1626,7 @@ body.menu-lock {
         transform: translate3d(0, 10px, 0);
         width: 100% !important;
         max-width: 380px !important;
+        flex: none !important; /* Overrides desktop flex stretching to eliminate empty bottom gap! */
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -1719,7 +1720,7 @@ body.menu-lock {
     }
 
     .works-split-layout:not(.collapsed-view) .work-cover-card {
-        transform: scale(0.72) !important; /* GPU accelerated scale-down */
+        transform: scale(0.72) translate3d(0, -35px, 0) !important; /* Scale down and pull upward to close layout gap */
         opacity: 0.95;
     }
 
