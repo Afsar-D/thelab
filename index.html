@@ -27,7 +27,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./index.css?v=4.1" />
+    <link rel="stylesheet" href="./index.css?v=4.3" />
 </head>
 <body class="spa-body">
 
@@ -675,85 +675,88 @@
             // ==========================================
             // Pointer Cursor (Focus-Frame Crosshair Cursor)
             // ==========================================
-            const focusCursor = document.getElementById("focus-cursor");
-            let mouseX = window.innerWidth / 2;
-            let mouseY = window.innerHeight / 2;
-            
-            // Current interpolated visual states
-            let currX = mouseX;
-            let currY = mouseY;
-            let currW = 24;
-            let currH = 24;
+            const isTouch = window.matchMedia("(pointer: coarse)").matches;
+            if (!isTouch) {
+                const focusCursor = document.getElementById("focus-cursor");
+                let mouseX = window.innerWidth / 2;
+                let mouseY = window.innerHeight / 2;
+                
+                // Current interpolated visual states
+                let currX = mouseX;
+                let currY = mouseY;
+                let currW = 24;
+                let currH = 24;
 
-            // Target dimensions and positions
-            let targetX = mouseX;
-            let targetY = mouseY;
-            let targetW = 24;
-            let targetH = 24;
+                // Target dimensions and positions
+                let targetX = mouseX;
+                let targetY = mouseY;
+                let targetW = 24;
+                let targetH = 24;
 
-            let isLocked = false;
-            let targetEl = null;
+                let isLocked = false;
+                let targetEl = null;
 
-            window.addEventListener("pointermove", (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                if (!isLocked) {
-                    targetX = mouseX;
-                    targetY = mouseY;
-                }
-            });
+                window.addEventListener("pointermove", (e) => {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                    if (!isLocked) {
+                        targetX = mouseX;
+                        targetY = mouseY;
+                    }
+                });
 
-            const animateCursor = () => {
-                if (isLocked && targetEl) {
-                    const rect = targetEl.getBoundingClientRect();
-                    const padding = 12;
-                    targetW = rect.width + padding;
-                    targetH = rect.height + padding;
-                    targetX = rect.left + rect.width / 2;
-                    targetY = rect.top + rect.height / 2;
-                } else {
-                    targetW = 24;
-                    targetH = 24;
-                    targetX = mouseX;
-                    targetY = mouseY;
-                }
+                const animateCursor = () => {
+                    if (isLocked && targetEl) {
+                        const rect = targetEl.getBoundingClientRect();
+                        const padding = 12;
+                        targetW = rect.width + padding;
+                        targetH = rect.height + padding;
+                        targetX = rect.left + rect.width / 2;
+                        targetY = rect.top + rect.height / 2;
+                    } else {
+                        targetW = 24;
+                        targetH = 24;
+                        targetX = mouseX;
+                        targetY = mouseY;
+                    }
 
-                // Smooth interpolation (lerp of 0.22 for premium lock transition)
-                currX += (targetX - currX) * 0.22;
-                currY += (targetY - currY) * 0.22;
-                currW += (targetW - currW) * 0.22;
-                currH += (targetH - currH) * 0.22;
+                    // Smooth interpolation (lerp of 0.22 for premium lock transition)
+                    currX += (targetX - currX) * 0.22;
+                    currY += (targetY - currY) * 0.22;
+                    currW += (targetW - currW) * 0.22;
+                    currH += (targetH - currH) * 0.22;
 
-                if (focusCursor) {
-                    focusCursor.style.left = `${currX}px`;
-                    focusCursor.style.top = `${currY}px`;
-                    focusCursor.style.width = `${currW}px`;
-                    focusCursor.style.height = `${currH}px`;
-                    focusCursor.style.transform = `translate3d(-50%, -50%, 0)`;
-                }
+                    if (focusCursor) {
+                        focusCursor.style.left = `${currX}px`;
+                        focusCursor.style.top = `${currY}px`;
+                        focusCursor.style.width = `${currW}px`;
+                        focusCursor.style.height = `${currH}px`;
+                        focusCursor.style.transform = `translate3d(-50%, -50%, 0)`;
+                    }
 
-                requestAnimationFrame(animateCursor);
-            };
-            animateCursor();
+                    requestAnimationFrame(animateCursor);
+                };
+                animateCursor();
 
-            // Delegated pointerover/pointerout to lock cursor size/position onto elements
-            window.addEventListener("pointerover", (e) => {
-                const trigger = e.target.closest(".hover-grow-trigger, a, button, .project-marquee-card, .work-cover-card, .about-row");
-                if (trigger) {
-                    isLocked = true;
-                    targetEl = trigger;
-                    if (focusCursor) focusCursor.classList.add("hovering");
-                }
-            });
+                // Delegated pointerover/pointerout to lock cursor size/position onto elements
+                window.addEventListener("pointerover", (e) => {
+                    const trigger = e.target.closest(".hover-grow-trigger, a, button, .project-marquee-card, .work-cover-card, .about-row");
+                    if (trigger) {
+                        isLocked = true;
+                        targetEl = trigger;
+                        if (focusCursor) focusCursor.classList.add("hovering");
+                    }
+                });
 
-            window.addEventListener("pointerout", (e) => {
-                const trigger = e.target.closest(".hover-grow-trigger, a, button, .project-marquee-card, .work-cover-card, .about-row");
-                if (trigger && trigger === targetEl) {
-                    isLocked = false;
-                    targetEl = null;
-                    if (focusCursor) focusCursor.classList.remove("hovering");
-                }
-            });
+                window.addEventListener("pointerout", (e) => {
+                    const trigger = e.target.closest(".hover-grow-trigger, a, button, .project-marquee-card, .work-cover-card, .about-row");
+                    if (trigger && trigger === targetEl) {
+                        isLocked = false;
+                        targetEl = null;
+                        if (focusCursor) focusCursor.classList.remove("hovering");
+                    }
+                });
+            }
 
             // ==========================================
             // Global Theme Switching Sync (Menu and Home buttons)
@@ -930,6 +933,7 @@
             };
             const basepath = getBasePath();
 
+            let hasExpandedProject = false;
             let currentViewId = getRouteFromUrl();
 
             const handleRoute = (viewId) => {
@@ -1166,10 +1170,12 @@
                     const clientH = worksList.clientHeight;
 
                     // Auto collapse details on scroll to keep loop snaps clean
-                    const expandedLayout = worksList.querySelector(".works-split-layout:not(.collapsed-view)");
-                    if (expandedLayout) {
-                        expandedLayout.classList.add("collapsed-view");
+                    if (hasExpandedProject) {
+                        worksList.querySelectorAll(".works-split-layout").forEach(l => {
+                            l.classList.add("collapsed-view");
+                        });
                         syncProjectClonesState();
+                        hasExpandedProject = false;
                     }
 
                     if (scrollTop <= 5) {
@@ -1213,6 +1219,7 @@
                             // Expand this project!
                             layout.classList.remove("collapsed-view");
                             syncProjectClonesState();
+                            hasExpandedProject = true;
                         }
                     }
 
@@ -1224,6 +1231,7 @@
                         if (layout) {
                             layout.classList.add("collapsed-view");
                             syncProjectClonesState();
+                            hasExpandedProject = false;
                         }
                     }
                 });
