@@ -27,7 +27,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./index.css?v=7.1" />
+    <link rel="stylesheet" href="./index.css?v=7.2" />
 </head>
 <body class="spa-body">
 
@@ -992,11 +992,16 @@
                     if (worksList) {
                         setTimeout(() => {
                             worksList.style.scrollBehavior = "auto";
-                            let clientW = worksList.clientWidth;
-                            if (clientW === 0) {
+                            const rect = worksList.getBoundingClientRect();
+                            let clientW = rect.width;
+                            if (!clientW || clientW === 0) {
                                 clientW = Math.min(window.innerWidth, 1200);
                             }
                             worksList.scrollLeft = clientW;
+                            
+                            // Synchronize layout flush
+                            const syncFlush = worksList.scrollLeft;
+                            
                             worksList.style.scrollBehavior = "smooth";
                         }, 50);
                     }
@@ -1227,8 +1232,9 @@
                 const handleLoopReset = () => {
                     if (isLooping || isTouching) return;
                     const scrollLeft = worksList.scrollLeft;
-                    let clientW = worksList.clientWidth;
-                    if (clientW === 0) {
+                    const rect = worksList.getBoundingClientRect();
+                    let clientW = rect.width;
+                    if (!clientW || clientW === 0) {
                         clientW = Math.min(window.innerWidth, 1200);
                     }
 
@@ -1236,14 +1242,22 @@
                         isLooping = true;
                         worksList.style.scrollBehavior = "auto";
                         worksList.scrollLeft = clientW * 3;
+                        
+                        // Force layout synchronization read-back reflow
+                        const forceReflow = worksList.scrollLeft;
+
                         setTimeout(() => {
                             worksList.style.scrollBehavior = "smooth";
                             isLooping = false;
                         }, 50);
-                    } else if (scrollLeft >= (clientW * 4 - 5)) {
+                    } else if (scrollLeft >= (clientW * 4 - 8)) { // 8px tolerance window
                         isLooping = true;
                         worksList.style.scrollBehavior = "auto";
                         worksList.scrollLeft = clientW * 1;
+                        
+                        // Force layout synchronization read-back reflow
+                        const forceReflow = worksList.scrollLeft;
+
                         setTimeout(() => {
                             worksList.style.scrollBehavior = "smooth";
                             isLooping = false;
