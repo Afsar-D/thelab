@@ -1609,6 +1609,7 @@ body.menu-lock {
         flex-direction: column !important;
         justify-content: center;
         align-items: center;
+        gap: 16px !important; /* Overrides desktop 80px gap */
         height: 100% !important;
         width: 100%;
         text-align: center;
