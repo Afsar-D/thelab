@@ -27,7 +27,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./index.css?v=7.2" />
+    <link rel="stylesheet" href="./index.css?v=7.3" />
 </head>
 <body class="spa-body">
 
@@ -1240,6 +1240,8 @@
 
                     if (scrollLeft <= 5) {
                         isLooping = true;
+                        // Kill active momentum scrolling on jump
+                        worksList.style.overflowX = "hidden";
                         worksList.style.scrollBehavior = "auto";
                         worksList.scrollLeft = clientW * 3;
                         
@@ -1247,11 +1249,14 @@
                         const forceReflow = worksList.scrollLeft;
 
                         setTimeout(() => {
+                            worksList.style.overflowX = "auto";
                             worksList.style.scrollBehavior = "smooth";
                             isLooping = false;
                         }, 50);
                     } else if (scrollLeft >= (clientW * 4 - 8)) { // 8px tolerance window
                         isLooping = true;
+                        // Kill active momentum scrolling on jump
+                        worksList.style.overflowX = "hidden";
                         worksList.style.scrollBehavior = "auto";
                         worksList.scrollLeft = clientW * 1;
                         
@@ -1259,6 +1264,7 @@
                         const forceReflow = worksList.scrollLeft;
 
                         setTimeout(() => {
+                            worksList.style.overflowX = "auto";
                             worksList.style.scrollBehavior = "smooth";
                             isLooping = false;
                         }, 50);
