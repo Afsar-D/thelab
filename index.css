@@ -476,9 +476,6 @@ body {
     text-align: center;
     max-width: 650px;
     padding: 0 24px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
 }
 
 .quote-line {
@@ -1587,8 +1584,6 @@ body.menu-lock {
     justify-content: center;
     align-items: center;
     gap: 8px;
-    width: max-content;
-    white-space: nowrap;
 }
 
 .static-name {
@@ -1598,8 +1593,10 @@ body.menu-lock {
 
 .dynamic-text {
     display: inline-block;
-    width: 12ch;
-    text-align: left;
+    width: 13ch;
+    min-width: 13ch;
+    text-align: center;
+    overflow: hidden;
     color: var(--accent);
     font-weight: 600;
     font-family: monospace;

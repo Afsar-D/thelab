@@ -174,7 +174,7 @@
                             <div class="work-info-content">
                                 <span class="work-snap-num">01</span>
                                 <h2 class="work-snap-title">portfolio website</h2>
-                                <p class="work-snap-desc">A premium single-page portfolio built with Vanilla HTML, CSS, and JavaScript, featuring route-based SPA transitions, a percentage loader, dynamic text scramble effects, background music controls, and responsive layouts.</p>
+                                <p class="work-snap-desc">A premium single-page portfolio built with Vanilla HTML5, CSS3, and JavaScript, featuring interactive horizontal scroll snap loops, quadrant transitions, custom audio visualizers, and responsive animations.</p>
                                 <div class="work-snap-tags">
                                     <span class="tag">HTML</span>
                                     <span class="tag">CSS</span>
@@ -292,7 +292,7 @@
                             <div class="work-info-content">
                                 <span class="work-snap-num">01</span>
                                 <h2 class="work-snap-title">portfolio website</h2>
-                                <p class="work-snap-desc">A premium single-page portfolio built with Vanilla HTML, CSS, and JavaScript, featuring route-based SPA transitions, a percentage loader, dynamic text scramble effects, background music controls, and responsive layouts.</p>
+                                <p class="work-snap-desc">A responsive personal portfolio built with React and Vite, focused on smooth interactions, dynamic physics-based particles, and custom typography navigation.</p>
                                 <div class="work-snap-tags">
                                     <span class="tag">React</span>
                                     <span class="tag">Vite</span>
@@ -855,31 +855,6 @@
             // ==========================================
             // Intersection Observer Reveal Animations
             // ==========================================
-            const revealObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const parent = entry.target.parentNode;
-                        const siblings = Array.from(parent.children);
-                        const index = siblings.indexOf(entry.target);
-                        const delay = Math.min(index * 60, 360);
-                        entry.target.style.transitionDelay = `${delay}ms`;
-                        entry.target.classList.add("is-visible");
-                    } else {
-                        // Reverse animation on scroll out
-                        entry.target.classList.remove("is-visible");
-                        entry.target.style.transitionDelay = "0ms";
-                    }
-                });
-            }, { threshold: 0.02 });
-
-            const triggerScrollReveals = () => {
-                const revealElements = document.querySelectorAll(".reveal-on-scroll");
-                revealElements.forEach(el => revealObserver.observe(el));
-            };
-
-            // ==========================================
-            // SPA Routing Mechanism (Clean Pathnames)
-            // ==========================================
             const views = {
                 home: document.getElementById("home-view"),
                 works: document.getElementById("works-view"),
@@ -928,6 +903,11 @@
             let hasExpandedProject = false;
             let currentViewId = getRouteFromUrl();
 
+            const getWorksSectionLeft = (worksList, sectionIndex) => {
+                const section = worksList && worksList.children ? worksList.children[sectionIndex] : null;
+                return section ? section.offsetLeft : 0;
+            };
+
             const handleRoute = (viewId) => {
                 if (!views[viewId]) viewId = "home";
 
@@ -965,7 +945,6 @@
                 }
                 
                 // Show/hide persistent floating menu and set clean path history states
-                const targetPath = basepath + (viewId === "home" ? "/" : "/" + viewId);
                 if (viewId === "home") {
                     floatingMenu.classList.remove("menu-visible");
                     menuLinks.home.classList.add("active-page");
@@ -974,16 +953,24 @@
                     menuLinks[viewId].classList.add("active-page");
                 }
 
-                // Push or replace navigation state cleanly (clears hashes instantly on landing)
-                if (window.location.pathname !== targetPath || window.location.hash) {
-                    history.replaceState(null, document.title, targetPath);
+                if (views[viewId]) {
+                    views[viewId].scrollTop = 0;
                 }
 
                 // Smoothly scroll window to top on view changes
                 window.scrollTo({ top: 0, behavior: "auto" });
 
-                // Run Intersection Observer triggers immediately for new view
-                triggerScrollReveals();
+                // Reveal all scroll-animated elements in the newly active view
+                if (viewId !== "home") {
+                    const activeView = views[viewId];
+                    if (activeView) {
+                        setTimeout(() => {
+                            activeView.querySelectorAll(".reveal-on-scroll").forEach((el) => {
+                                el.classList.add("is-visible");
+                            });
+                        }, 80);
+                    }
+                }
 
                 if (viewId === "about") {
                     setTimeout(animateStatsCountUp, 150); // Counts up numbers dynamically on route enter
@@ -994,12 +981,7 @@
                     if (worksList) {
                         setTimeout(() => {
                             worksList.style.scrollBehavior = "auto";
-                            const rect = worksList.getBoundingClientRect();
-                            let clientW = rect.width;
-                            if (!clientW || clientW === 0) {
-                                clientW = Math.min(window.innerWidth, 1200);
-                            }
-                            worksList.scrollLeft = clientW;
+                            worksList.scrollLeft = getWorksSectionLeft(worksList, 1);
                             
                             // Synchronize layout flush
                             const syncFlush = worksList.scrollLeft;
@@ -1020,15 +1002,14 @@
                     const viewId = href.replace("#", "");
                     if (viewIndices[viewId] !== undefined) {
                         e.preventDefault();
-                        const nextPath = basepath + (viewId === "home" ? "/" : "/" + viewId);
-                        history.pushState(null, null, nextPath);
+                        window.location.hash = viewId === "home" ? "" : viewId;
                         handleRoute(viewId);
                     }
                 }
             });
 
-            // Listen to browser forward/back navigate gestures
-            window.addEventListener("popstate", () => {
+            // Listen to browser forward/back navigate gestures and hash changes
+            window.addEventListener("hashchange", () => {
                 const currentRoute = getRouteFromUrl();
                 handleRoute(currentRoute);
             });
@@ -1163,10 +1144,7 @@
                     }
                     
                     if (currentView !== "home") {
-                        const targetPath = basepath + "/";
-                        if (window.location.pathname !== targetPath) {
-                            history.pushState(null, document.title, targetPath);
-                        }
+                        window.location.hash = "";
                         handleRoute("home");
                         playClickSound();
                     }
@@ -1245,7 +1223,7 @@
                     if (scrollLeft <= 5) {
                         isLooping = true;
                         worksList.style.scrollBehavior = "auto";
-                        worksList.scrollLeft = clientW * 3;
+                        worksList.scrollLeft = getWorksSectionLeft(worksList, 3);
                         
                         // Force layout synchronization read-back reflow
                         const forceReflow = worksList.scrollLeft;
@@ -1257,7 +1235,7 @@
                     } else if (scrollLeft >= (clientW * 4 - 8)) { // 8px tolerance window
                         isLooping = true;
                         worksList.style.scrollBehavior = "auto";
-                        worksList.scrollLeft = clientW * 1;
+                        worksList.scrollLeft = getWorksSectionLeft(worksList, 1);
                         
                         // Force layout synchronization read-back reflow
                         const forceReflow = worksList.scrollLeft;
